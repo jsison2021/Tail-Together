@@ -63,12 +63,11 @@ This application allows users to chat with eachother on upcoming venues to meet 
 
 **Flow Navigation** (Screen to Screen)
 
-* [list first screen here]
-   * [list screen navigation here]
-   * ...
-* [list second screen here]
-   * [list screen navigation here]
-   * ...
+* Login/Registed -> User logs in automatically if signed in
+* Upcoming events -> If user chooses an event its added to my Events
+* My Events -> Chat to users or in the group
+* Plan an event -> Adds to My Events
+* Profile -> Add a photo or edit bio
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
