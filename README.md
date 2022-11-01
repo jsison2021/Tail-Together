@@ -38,8 +38,7 @@ This application allows users to chat with eachother on upcoming venues to meet 
 
 ### 2. Screen Archetypes
 
-* Login
-* Register - User signs up or logs into their account
+* Login/Register - User signs up or logs into their account
    * When a user is not logged in, they are prompted to login or sign up for the application.
 * Upcoming Event Screen - Upcoming events
    * All events that are upcoming that a user can join to start messaging about the event
