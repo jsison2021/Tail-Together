@@ -70,8 +70,10 @@ This application allows users to chat with eachother on upcoming venues to meet 
 * Profile -> Add a photo or edit bio
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![Wireframes](https://user-images.githubusercontent.com/98677021/199378128-0fb9d072-7f87-47ce-bc30-177f042d401b.png)
+
+
+
 
 ### [BONUS] Digital Wireframes & Mockups
 
