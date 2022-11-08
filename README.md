@@ -108,8 +108,8 @@ This application allows users to chat with eachother on upcoming venues to meet 
             }
          }
          ```
-      - (Create/POST) add current user from event
-      - (Delete) delete current user from event
+      - (Create/POST) add current user to event
+      - (Delete) delete current user to event
       
    - Create events Screen
       - (Create/POST) Create a new event object
