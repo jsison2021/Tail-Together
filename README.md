@@ -94,29 +94,28 @@ This application allows users to chat with eachother on upcoming venues to meet 
 
 #### List of network requests by screen
    - Home Feed Screen
-      - (Read/GET) Query all posts where user is author
+      - (Read/GET) Query all events where user is author
          ```swift
-         let query = PFQuery(className:"Post")
+         let query = PFQuery(className:"Events")
          query.whereKey("author", equalTo: currentUser)
          query.order(byDescending: "createdAt")
          query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
             if let error = error { 
                print(error.localizedDescription)
-            } else if let posts = posts {
-               print("Successfully retrieved \(posts.count) posts.")
-           // TODO: Do something with posts...
+            } else if let events = events {
+               print("Successfully retrieved \(events.count) events.")
+           // TODO: Do something with events...
             }
          }
          ```
-      - (Create/POST) Create a new like on a post
-      - (Delete) Delete existing like
-      - (Create/POST) Create a new comment on a post
-      - (Delete) Delete existing comment
-   - Create Post Screen
-      - (Create/POST) Create a new post object
+      - (Create/POST) add current user from event
+      - (Delete) delete current user from event
+      
+   - Create events Screen
+      - (Create/POST) Create a new event object
+   - My Events Screen
+      - (Delete) delete events 
    - Profile Screen
       - (Read/GET) Query logged in user object
       - (Update/PUT) Update user profile image
 
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
