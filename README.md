@@ -25,7 +25,7 @@ This application allows users to chat with eachother on upcoming venues to meet 
 
 **Required Must-have Stories**
 
-- User logs in to access the applicaiton
+- [x]User logs in to access the applicaiton
 - Profile page for the user
 - Events that users can join
 - Allowing an individual to make an event
