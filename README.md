@@ -5,7 +5,7 @@
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
-3. [ProgressGIFS](#ProgressGIFS)
+3. [ProgressGIFS](#Progress-GIFS)
 
 ## Overview
 ### Description
@@ -120,6 +120,9 @@ This application allows users to chat with eachother on upcoming venues to meet 
       - (Read/GET) Query logged in user object
       - (Update/PUT) Update user profile image
 
-## ProgressGIFS 
+## Progress-GIFS 
 11/15
 https://imgur.com/a/wZ4c8rW
+
+11/22
+https://imgur.com/a/wyYa8ys
