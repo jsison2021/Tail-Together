@@ -29,10 +29,10 @@ class SignOnViewController: UIViewController {
     
     @IBAction func OnSignOnButton(_ sender: Any) {
     
-    let username = UsernameLoginField.text
-    let password = PasswordLoginField.text
+    let username = UsernameLoginField.text!
+    let password = PasswordLoginField.text!
     
-    PFUser.logInWithUsername(inBackground: username!, password: password!){
+    PFUser.logInWithUsername(inBackground: username, password: password){
         (user, error) in
         if user != nil {
             self.performSegue(withIdentifier: "MainSegue", sender: nil)

@@ -15,7 +15,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var FirstName: UITextField!
     @IBOutlet weak var LastName: UITextField!
     @IBOutlet weak var EmailField: UITextField!
-    @IBOutlet weak var PhoneNumberField: UITextField!
+   
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var SignUpButton: UIButton!
     @IBOutlet weak var UserNameField: UITextField!
@@ -33,7 +33,6 @@ class SignUpViewController: UIViewController {
         user["FirstName"] = FirstName.text
         user["LastName"] = LastName.text
         user.email = EmailField.text
-        user["PhoneNumber"] = PhoneNumberField.text
         user.username = UserNameField.text
         user.password = PasswordField.text
         
@@ -41,7 +40,6 @@ class SignUpViewController: UIViewController {
         user.signUpInBackground {(success, error) in
             if success{
                 self.performSegue(withIdentifier: "GoTotheLoginScreen", sender: nil)
-        
             }
             else {
                 print("Error: \(String(describing: error?.localizedDescription)))")
