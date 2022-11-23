@@ -16,10 +16,6 @@
 		295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722BE291314C3003CCFC4 /* SignUpViewController.swift */; };
 		295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722C0291314D3003CCFC4 /* SignOnViewController.swift */; };
 		297122CD29187D5500DFB003 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297122CC29187D5500DFB003 /* PhotoViewController.swift */; };
-		297122D029187D7700DFB003 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297122CF29187D7700DFB003 /* VideoViewController.swift */; };
-		297122D329187DD300DFB003 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297122D229187DD300DFB003 /* NewConversationViewController.swift */; };
-		29B539D32913391200A08C18 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539D22913391200A08C18 /* EventViewController.swift */; };
-		29B539D529133AA500A08C18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539D429133AA500A08C18 /* ProfileViewController.swift */; };
 		29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DC2913552800A08C18 /* MessageViewController.swift */; };
 		29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DE291355DC00A08C18 /* MessageCell.swift */; };
 		B2C62745A3F265FFFD65981B /* Pods_Tail_Together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */; };
@@ -37,10 +33,6 @@
 		295722BE291314C3003CCFC4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		295722C0291314D3003CCFC4 /* SignOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOnViewController.swift; sourceTree = "<group>"; };
 		297122CC29187D5500DFB003 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		297122CF29187D7700DFB003 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		297122D229187DD300DFB003 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
-		29B539D22913391200A08C18 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		29B539D429133AA500A08C18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		29B539DC2913552800A08C18 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		29B539DE291355DC00A08C18 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tail_Together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +87,6 @@
 				297122C529187B6B00DFB003 /* Views */,
 				297122C429187AE400DFB003 /* Controllers */,
 				294AB1DC29120AC3004C7E18 /* Info.plist */,
-				29B539DE291355DC00A08C18 /* MessageCell.swift */,
 			);
 			path = "Tail Together";
 			sourceTree = "<group>";
@@ -103,14 +94,13 @@
 		297122C429187AE400DFB003 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				29B539D22913391200A08C18 /* EventViewController.swift */,
 				295722BC29131360003CCFC4 /* FIrstViewController.swift */,
 				297122D429187E8300DFB003 /* Login */,
-				29B539D429133AA500A08C18 /* ProfileViewController.swift */,
-				29B539DC2913552800A08C18 /* MessageViewController.swift */,
-				297122CC29187D5500DFB003 /* PhotoViewController.swift */,
-				297122CF29187D7700DFB003 /* VideoViewController.swift */,
-				297122D229187DD300DFB003 /* NewConversationViewController.swift */,
+				D028BAB7292DD473004BFACC /* Profile */,
+				D028BAB6292DD462004BFACC /* Messages */,
+				D028BAB4292DD3F8004BFACC /* My Events */,
+				D028BAB5292DD41B004BFACC /* Create Event */,
+				D028BAB3292DD3E5004BFACC /* All Events */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -163,6 +153,44 @@
 				295722C0291314D3003CCFC4 /* SignOnViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D028BAB3292DD3E5004BFACC /* All Events */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "All Events";
+			sourceTree = "<group>";
+		};
+		D028BAB4292DD3F8004BFACC /* My Events */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "My Events";
+			sourceTree = "<group>";
+		};
+		D028BAB5292DD41B004BFACC /* Create Event */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Create Event";
+			sourceTree = "<group>";
+		};
+		D028BAB6292DD462004BFACC /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				29B539DE291355DC00A08C18 /* MessageCell.swift */,
+				29B539DC2913552800A08C18 /* MessageViewController.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		D028BAB7292DD473004BFACC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				297122CC29187D5500DFB003 /* PhotoViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		D0460D8DB16B7F6CFBDFC494 /* Pods */ = {
@@ -294,11 +322,7 @@
 				29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */,
 				294AB1CF29120AC1004C7E18 /* AppDelegate.swift in Sources */,
 				295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */,
-				29B539D529133AA500A08C18 /* ProfileViewController.swift in Sources */,
-				297122D329187DD300DFB003 /* NewConversationViewController.swift in Sources */,
-				297122D029187D7700DFB003 /* VideoViewController.swift in Sources */,
 				294AB1D129120AC1004C7E18 /* SceneDelegate.swift in Sources */,
-				29B539D32913391200A08C18 /* EventViewController.swift in Sources */,
 				29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */,
 				297122CD29187D5500DFB003 /* PhotoViewController.swift in Sources */,
 			);

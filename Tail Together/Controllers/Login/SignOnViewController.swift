@@ -19,6 +19,7 @@ class SignOnViewController: UIViewController {
     @IBOutlet weak var SignupButton: UIButton!
     @IBOutlet weak var SignInButton: UIButton!
     
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class SignOnViewController: UIViewController {
     
     let username = UsernameLoginField.text!
     let password = PasswordLoginField.text!
+    
+       
     
     PFUser.logInWithUsername(inBackground: username, password: password){
         (user, error) in

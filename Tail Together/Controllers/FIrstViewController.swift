@@ -15,8 +15,6 @@ class FIrstViewController: UIViewController {
     
     @IBOutlet weak var SignUpButton: UIButton!
     
-    
-    
     @IBOutlet weak var SignOnButton: UIButton!
     
     override func viewDidLoad() {

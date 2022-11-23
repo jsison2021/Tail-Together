@@ -10,9 +10,6 @@ import Parse
 
 class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-   
-    
-    
     
     @IBOutlet weak var tableView: UITableView!
     
