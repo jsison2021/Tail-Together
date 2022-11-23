@@ -196,16 +196,9 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="fGS-Yg-p8K"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit Profile" id="74a-i1-KQ7"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="tapGesture" destination="rQq-UO-pke" id="uU9-uI-vXe"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvj-IM-m0m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="rQq-UO-pke">
-                    <connections>
-                        <action selector="ChangeProfilePicture:" destination="mdT-rE-suL" id="TuY-65-hoN"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rQq-UO-pke"/>
             </objects>
             <point key="canvasLocation" x="1032" y="2050"/>
         </scene>
