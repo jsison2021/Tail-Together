@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Irst View Controller-->
+        <!--FirstViewController-->
         <scene sceneID="81T-db-icn">
             <objects>
-                <viewController id="FRS-zg-pMl" customClass="FIrstViewController" customModule="Tail_Together" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" title="FirstViewController" id="FRS-zg-pMl" customClass="FIrstViewController" customModule="Tail_Together" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lyS-6T-FHr">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,7 +193,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="8aU-6Y-W8v">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="fGS-Yg-p8K"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="fGS-Yg-p8K">
+                            <connections>
+                                <action selector="onLogout:" destination="mdT-rE-suL" id="XVF-Gi-V8h"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit Profile" id="74a-i1-KQ7"/>
                     </navigationItem>
                 </viewController>
@@ -342,7 +346,7 @@
                             <outlet property="delegate" destination="DUT-gM-ZXB" id="niM-aD-0mT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="7Zd-VS-ziT"/>
+                    <navigationItem key="navigationItem" title="All Events" id="7Zd-VS-ziT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MjV-Ud-oFo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -388,7 +392,7 @@
                             <outlet property="delegate" destination="WLj-mF-uQL" id="DCO-yS-ICB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="9M1-fb-7XR"/>
+                    <navigationItem key="navigationItem" title="My Events" id="9M1-fb-7XR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKb-7n-UkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -504,7 +508,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-9p-HQB">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-9p-HQB">
                                 <rect key="frame" x="16" y="260" width="358" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -574,7 +578,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="WBq-s0-eGR"/>
-        <segue reference="9Vi-9n-95h"/>
+        <segue reference="kuM-af-Eap"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>

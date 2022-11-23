@@ -18,6 +18,7 @@
 		29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DC2913552800A08C18 /* MessageViewController.swift */; };
 		29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DE291355DC00A08C18 /* MessageCell.swift */; };
 		B2C62745A3F265FFFD65981B /* Pods_Tail_Together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */; };
+		D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028BABA292DE319004BFACC /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		29B539DC2913552800A08C18 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		29B539DE291355DC00A08C18 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tail_Together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D028BABA292DE319004BFACC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E36083A7524E18A3A1F32D0F /* Pods-Tail Together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tail Together.debug.xcconfig"; path = "Target Support Files/Pods-Tail Together/Pods-Tail Together.debug.xcconfig"; sourceTree = "<group>"; };
 		E7644BBA0AC225F0EA17F8BB /* Pods-Tail Together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tail Together.release.xcconfig"; path = "Target Support Files/Pods-Tail Together/Pods-Tail Together.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 		D028BAB7292DD473004BFACC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D028BABA292DE319004BFACC /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				294AB1CF29120AC1004C7E18 /* AppDelegate.swift in Sources */,
 				295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */,
 				294AB1D129120AC1004C7E18 /* SceneDelegate.swift in Sources */,
+				D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */,
 				29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
