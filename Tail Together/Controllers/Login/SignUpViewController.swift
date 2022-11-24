@@ -11,8 +11,9 @@ import AlamofireImage
 
 class SignUpViewController: UIViewController {
     
-    let user = PFUser()
+    let user = PFUser() //Parse object declaration
     
+    /* */
     @IBOutlet weak var FirstName: UITextField!
     @IBOutlet weak var LastName: UITextField!
     @IBOutlet weak var EmailField: UITextField!
@@ -31,12 +32,13 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        resetForm()
+        resetForm() ///call reset form function
         // Do any additional setup after loading the view.
     }
     
     func resetForm(){
         
+        /* Variables*/
         SignUpButton.isEnabled = false
         FnameError.isHidden = false
         LnameError.isHidden = false
@@ -58,32 +60,49 @@ class SignUpViewController: UIViewController {
        // user.username = UserNameField.text
        // user.password = PasswordField.text
         
-        
+         
+        //Sign up button perform this after checking for validate form
         user.signUpInBackground {(success, error) in
             if success{
-                self.performSegue(withIdentifier: "GoTotheLoginScreen", sender: nil)
+                self.performSegue(withIdentifier: "GoTotheLoginScreen", sender: nil)//succes sign up
             }
             else {
-                print("Error: \(String(describing: error?.localizedDescription)))")
+                print("Error: \(String(describing: error?.localizedDescription)))") //error sigh up
             }
         }
-        
-        
     }
     
     
     @IBAction func FnameChanged(_ sender: Any) {
-       // var Fname = user["FirstName"]
-        //if Fname = FirstName.text{
-            
-        user["FirstName"] = FirstName.text
-       
-            
+        
+        
+        if let errorMessage = invalidFirstName(FirstName.text!) {
+            FnameError.text = errorMessage
+            FnameError.isHidden = false
+        }
+        else
+        {
+            FnameError.isHidden = true
+            user["FirstName"] = FirstName.text //get first name from user save it to database
+        }
+        checkForValidForm()
     }
     
     
     @IBAction func LnameChanged(_ sender: Any) {
-        user["LastName"] = LastName.text
+        
+        if let errorMessage = invalidLastName(LastName.text!)
+          
+        {
+            LnameError.text = errorMessage
+            LnameError.isHidden = false
+        }
+        else
+        {
+            LnameError.isHidden = true
+            user["LastName"] = LastName.text //get last name from user and save it to database
+        }
+        checkForValidForm()
     }
     
     
@@ -149,7 +168,7 @@ class SignUpViewController: UIViewController {
     
     
     func checkForValidForm(){
-        if emaiError.isEnabled && usernameError.isHidden && passwordError.isHidden{
+        if emaiError.isEnabled && usernameError.isHidden && passwordError.isHidden && FnameError.isHidden && LnameError.isHidden{
             SignUpButton.isEnabled = true
         }
         else
@@ -194,9 +213,9 @@ class SignUpViewController: UIViewController {
         if containsUpperCase(value){
            return "Password must contain at least 1 upper case"
         }
-        if PasswordField.state.isEmpty{
-            PasswordField.placeholder = "Password required"
-        }
+        //if PasswordField.state.isEmpty{
+           // PasswordField.placeholder = "Password required"
+       // }
     
         /*if PasswordField.state.isEmpty{
             PasswordField.placeholder = "Password required"
@@ -241,15 +260,63 @@ class SignUpViewController: UIViewController {
         if value.count < 6 {
             return "Username must be at least 6 characters"
         }
-        if UserNameField.state.isEmpty{
-            UserNameField.placeholder = "Username required"
-        }
-        if UserNameField.state.isEmpty{
-           UserNameField.placeholder = "Email required"
-        }
-    
+       // if UserNameField.state.isEmpty{
+         //   UserNameField.placeholder = "Username required"
+        //}
+
         return nil
     }
+    
+    func invalidFirstName(_ value: String) -> String? {
+        
+        if (FirstName.text!.isEmpty)
+        {
+           return "Enter your first name"
+        }
+        if Digit(value){
+            return "First name must not contain digit"
+        }
+        if Special(value){
+            return "First name must not contain special character"
+        }
+        return nil
+
+    }
+    
+    func invalidLastName(_ value: String) -> String?{
+        
+        if LastName.text!.isEmpty{
+           return "Enter your last name"
+        }
+        if Digit(value){
+            return "Last name must not contain digit"
+        }
+        if Special(value){
+            return "Last name must not contain special character"
+        }
+        return nil
+    }
+    func Digit(_ value: String) -> Bool {
+        
+        let digits = ".*[0-9]+.*"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", digits)
+        return predicate.evaluate(with: value)
+    }
+    func Special(_ value: String) -> Bool {
+        
+        let sp = ".*[^A-Za-z0-9].*"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", sp)
+        return predicate.evaluate(with: value)
+    }
+    
+    
+    /*func invalidFirstName(sender: UITextField) -> String {
+
+        if sender.text!.isEmpty {
+            return "Enter your first name"
+       }
+        return " "
+     }*/
     
     /*
     // MARK: - Navigation

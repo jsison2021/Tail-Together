@@ -21,6 +21,7 @@ class SignOnViewController: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
