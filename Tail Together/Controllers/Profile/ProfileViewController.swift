@@ -34,11 +34,10 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         self.userNameText.text = user?["username"] as? String
         self.emailText.text = user?["email"] as? String
 
-        //let imageFile = user?["image"] as! PFFileObject
-       // let urlString = imageFile.url!
-       // let url = URL(string: urlString)!
+       // let imageFile = user?["image"] as! PFFileObject
+        //let urlString = imageFile.url!
+        //let url = URL(string: urlString)!
         
-        //print(imageFile)
         //profilePicture.af.setImage(withURL: url)
         // Do any additional setup after loading the view.
     }
@@ -59,7 +58,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         user?.saveInBackground{ (success,error) in
             if success{
                 self.dismiss(animated: true)
-
+                
                 print("saved")
             }
             else{

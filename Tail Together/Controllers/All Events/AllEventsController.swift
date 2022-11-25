@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Parse
 
 class AllEventsController: UITableViewController {
 
+    var events = [PFObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -21,25 +25,39 @@ class AllEventsController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let query = PFQuery(className: "Events")
+        query.includeKey("author")
+        query.limit = 20
+        
+        query.findObjectsInBackground{ (events,error) in
+            if events != nil {
+                self.events = events!
+                self.tableView.reloadData()
+            }
+            
+        }
     }
+ 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+       
+        return events.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
 
-        // Configure the cell...
-
+        let event = events[indexPath.row]
+        
+        cell.eventNameLabel.text = event["nameText"] as? String
+        cell.hostLabel.text = event["author"] as? String
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
