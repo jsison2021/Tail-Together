@@ -354,6 +354,7 @@
                         <outlet property="descText" destination="Lhe-tf-6hW" id="2yS-T5-rGW"/>
                         <outlet property="nameText" destination="ct6-dF-aZk" id="1Lh-mc-6wY"/>
                         <outlet property="timeText" destination="CFQ-7J-onG" id="Cqf-3V-r2S"/>
+                        <segue destination="kAF-og-c7n" kind="presentation" identifier="NewEvent" id="ROy-7Y-09Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUD-sA-yy8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -702,6 +703,7 @@
             <objects>
                 <navigationController title="My Events" id="Lwm-q0-iN4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Events" image="calendar.circle" catalog="system" id="3wW-k2-CRy"/>
+                    <navigationItem key="navigationItem" id="zHF-tl-GKd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Uu-6f-820">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -937,6 +939,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rsl-2b-fR0"/>
+        <segue reference="ROy-7Y-09Q"/>
         <segue reference="kuM-af-Eap"/>
     </inferredMetricsTieBreakers>
     <resources>

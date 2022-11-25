@@ -28,12 +28,18 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         self.nameLabel.text = user?["username"] as? String
         
+        self.profilePicture = user?["image"] as? UIImageView
         self.firstNameText.text = user?["FirstName"] as? String
         self.lastNameText.text = user?["LastName"] as? String
         self.userNameText.text = user?["username"] as? String
         self.emailText.text = user?["email"] as? String
 
+        //let imageFile = user?["image"] as! PFFileObject
+       // let urlString = imageFile.url!
+       // let url = URL(string: urlString)!
         
+        //print(imageFile)
+        //profilePicture.af.setImage(withURL: url)
         // Do any additional setup after loading the view.
     }
    
