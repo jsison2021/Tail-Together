@@ -6,16 +6,42 @@
 //
 
 import UIKit
+import Parse
 
 class CreateEventViewController: UIViewController {
-
+    @IBOutlet weak var dateText: UITextField!
+    @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var descText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        descText!.layer.borderWidth = 1
+        descText!.layer.borderColor = UIColor.darkGray.cgColor
         // Do any additional setup after loading the view.
     }
     
 
+    @IBAction func createButton(_ sender: Any) {
+        let event = PFObject(className: "Events")
+        
+        event["dateText"] = dateText.text!
+        event["descText"] = descText.text!
+        event["nameText"] = nameText.text!
+        event["author"] = PFUser.current()!
+        
+        event.saveInBackground{ (success,error) in
+            if success{
+                self.dismiss(animated: true)
+
+                print("saved")
+            }
+            else{
+                print("error!")
+            }
+        
+        }
+    }
     /*
     // MARK: - Navigation
 
