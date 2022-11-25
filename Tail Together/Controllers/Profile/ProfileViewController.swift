@@ -7,14 +7,18 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameText: UITextField!
+    
+    
+    @IBOutlet weak var profilePicture: UIImageView!
     
     let user = PFUser.current()
   
@@ -32,11 +36,7 @@ class ProfileViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            
-            onUpdateButton()
-        }
+   
     
     @IBAction func onUpdateButton(_ sender: Any) {
         print("Working")
@@ -46,11 +46,52 @@ class ProfileViewController: UIViewController {
         user?["username"] = self.userNameText.text
         user?["email"] = self.emailText.text
         
-        user?.saveInBackground()
+        let imageData = profilePicture.image!.pngData()
+        let file = PFFileObject(name: "image.png", data: imageData!)
+    
+        user?["image"] = file
+        user?.saveInBackground{ (success,error) in
+            if success{
+                self.dismiss(animated: true)
+
+                print("saved")
+            }
+            else{
+                print("error!")
+            }
         
+        }
         
+
         
     }
+    
+    
+    @IBAction func onCameraButton(_ sender: Any) {
+        print("Working")
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            picker.sourceType = .camera
+        }
+        else{
+            picker.sourceType = .photoLibrary
+        }
+        present(picker,animated: true, completion: nil)
+    }
+ 
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 300, height: 300)
+        let scaledImage = image.af.imageScaled(to: size)
+        
+        profilePicture.image = scaledImage
+        dismiss(animated: true)
+    }
+    
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
         

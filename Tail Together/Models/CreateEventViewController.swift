@@ -12,6 +12,7 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var dateText: UITextField!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var descText: UITextView!
+    @IBOutlet weak var timeText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class CreateEventViewController: UIViewController {
     @IBAction func createButton(_ sender: Any) {
         let event = PFObject(className: "Events")
         
+        event["timeText"] = timeText.text!
         event["dateText"] = dateText.text!
         event["descText"] = descText.text!
         event["nameText"] = nameText.text!
