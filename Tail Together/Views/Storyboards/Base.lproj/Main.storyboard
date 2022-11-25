@@ -426,7 +426,12 @@
                                 <rect key="frame" x="14" y="568" width="80" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Update"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Update">
+                                    <color key="baseForegroundColor" red="0.91129696370000002" green="0.39035246270000001" blue="0.26429545879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onUpdateButton:" destination="mdT-rE-suL" eventType="touchUpInside" id="bfi-M3-hf4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fs7-AL-dhw"/>

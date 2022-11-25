@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         self.nameLabel.text = user?["username"] as? String
+        
         self.firstNameText.text = user?["FirstName"] as? String
         self.lastNameText.text = user?["LastName"] as? String
         self.userNameText.text = user?["username"] as? String
@@ -31,8 +32,25 @@ class ProfileViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            
+            onUpdateButton()
+        }
     
-    
+    @IBAction func onUpdateButton(_ sender: Any) {
+        print("Working")
+        
+        user?["FirstName"] = self.firstNameText.text
+        user?["LastName"] = self.lastNameText.text
+        user?["username"] = self.userNameText.text
+        user?["email"] = self.emailText.text
+        
+        user?.saveInBackground()
+        
+        
+        
+    }
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
         
