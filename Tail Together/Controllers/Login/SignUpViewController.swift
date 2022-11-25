@@ -29,11 +29,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordError: UILabel!
     
     @IBOutlet weak var GoTotheLogin: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         resetForm() ///call reset form function
-        // Do any additional setup after loading the view.
     }
     
     func resetForm(){
@@ -52,14 +52,6 @@ class SignUpViewController: UIViewController {
         emaiError.text = " "
         usernameError.text = ""
         passwordError.text = ""
-        
-        
-        
-        //user["LastName"] = LastName.text
-        //user.email = EmailField.text
-       // user.username = UserNameField.text
-       // user.password = PasswordField.text
-        
          
         //Sign up button perform this after checking for validate form
         user.signUpInBackground {(success, error) in
@@ -119,14 +111,6 @@ class SignUpViewController: UIViewController {
             emaiError.isHidden = true
             user.email = EmailField.text
         }
-        
-        /*if EmailField.state.isEmpty{
-            EmailField.placeholder = "Email required"
-            emaiError.isHidden = false
-        }*/
-        
-            
-        
         checkForValidForm()
     }
     
@@ -168,7 +152,7 @@ class SignUpViewController: UIViewController {
     
     
     func checkForValidForm(){
-        if emaiError.isEnabled && usernameError.isHidden && passwordError.isHidden && FnameError.isHidden && LnameError.isHidden{
+        if emaiError.isHidden && usernameError.isHidden && passwordError.isHidden && FnameError.isHidden && LnameError.isHidden{
             SignUpButton.isEnabled = true
         }
         else
@@ -194,8 +178,6 @@ class SignUpViewController: UIViewController {
         if EmailField.state.isEmpty{
             EmailField.placeholder = "Email required"
         }
-    
-        
         return nil
     }
     
@@ -213,18 +195,6 @@ class SignUpViewController: UIViewController {
         if containsUpperCase(value){
            return "Password must contain at least 1 upper case"
         }
-        //if PasswordField.state.isEmpty{
-           // PasswordField.placeholder = "Password required"
-       // }
-    
-        /*if PasswordField.state.isEmpty{
-            PasswordField.placeholder = "Password required"
-            self.PasswordField.layer.borderColor = UIColor.blue.cgColor
-            self.PasswordField.layer.borderWidth = 1
-        }*/
-       
-
-            
         return nil
     }
     
@@ -260,10 +230,6 @@ class SignUpViewController: UIViewController {
         if value.count < 6 {
             return "Username must be at least 6 characters"
         }
-       // if UserNameField.state.isEmpty{
-         //   UserNameField.placeholder = "Username required"
-        //}
-
         return nil
     }
     
@@ -296,36 +262,19 @@ class SignUpViewController: UIViewController {
         }
         return nil
     }
+    
     func Digit(_ value: String) -> Bool {
         
         let digits = ".*[0-9]+.*"
         let predicate = NSPredicate(format: "SELF MATCHES %@", digits)
         return predicate.evaluate(with: value)
     }
+    
     func Special(_ value: String) -> Bool {
         
         let sp = ".*[^A-Za-z0-9].*"
         let predicate = NSPredicate(format: "SELF MATCHES %@", sp)
         return predicate.evaluate(with: value)
     }
-    
-    
-    /*func invalidFirstName(sender: UITextField) -> String {
-
-        if sender.text!.isEmpty {
-            return "Enter your first name"
-       }
-        return " "
-     }*/
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
