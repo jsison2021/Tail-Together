@@ -16,8 +16,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameText: UITextField!
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+       
+        
+        let currentUser = PFUser.current()
+       
+        
+        self.nameLabel.text = currentUser?.username
+    
+  
+        self.userNameText.text = currentUser?.username
+        self.emailText.text = currentUser?.email
+        
         // Do any additional setup after loading the view.
     }
     
