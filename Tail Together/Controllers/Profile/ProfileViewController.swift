@@ -16,21 +16,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameText: UITextField!
     
+    let user = PFUser.current()
   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
         
-        let currentUser = PFUser.current()
-       
-        
-        self.nameLabel.text = currentUser?.username
-    
-  
-        self.userNameText.text = currentUser?.username
-        self.emailText.text = currentUser?.email
+        self.nameLabel.text = user?["username"] as? String
+        self.firstNameText.text = user?["FirstName"] as? String
+        self.lastNameText.text = user?["LastName"] as? String
+        self.userNameText.text = user?["username"] as? String
+        self.emailText.text = user?["email"] as? String
+
         
         // Do any additional setup after loading the view.
     }
