@@ -43,6 +43,7 @@ class SignOnViewController: UIViewController {
         (user, error) in
         if user != nil {
             self.performSegue(withIdentifier: "MainSegue", sender: nil)
+            
         }
         else {
             print("Error: \(String(describing: error?.localizedDescription)))")
