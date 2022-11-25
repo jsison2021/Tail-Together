@@ -10,12 +10,18 @@ import Parse
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var userNameText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
-
+    
     @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
         
