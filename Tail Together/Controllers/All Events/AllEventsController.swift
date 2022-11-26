@@ -10,12 +10,15 @@ import Parse
 
 class AllEventsController: UITableViewController {
 
+    var User = [PFUser].self
     var events = [PFObject]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.delegate = self
-        tableView.dataSource = self
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,37 +31,74 @@ class AllEventsController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let query = PFQuery(className: "Events")
+        query.order(byDescending: "createdAt")
         query.includeKey("author")
+                           //, "timeText", "dateText", "descText", "nameText", "timeText.author", "dateText.author", "descText.author", "nameText.author"])
         query.limit = 20
+        
+        
+        
         
         query.findObjectsInBackground{ (events,error) in
             if events != nil {
                 self.events = events!
                 self.tableView.reloadData()
+               
             }
             
         }
     }
- 
+    
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
         return events.count
+       /* let event = events[section]
+        let comments = (event["comments"] as? [PFObject]) ?? []
+        return comments.count + 2
+        let event = events[section]
+        return 1*/
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 190
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
-
+        //let event = events[indexPath.section]
+        
         let event = events[indexPath.row]
+        let user = event["author"] as! PFUser
         
+        cell.hostLabel.text = event["descText"] as? String
+        cell.dataLabel.text = event["dateText"] as? String
+        cell.timeLabel.text = event["timeText"] as? String
         cell.eventNameLabel.text = event["nameText"] as? String
-        cell.hostLabel.text = event["author"] as? String
         
-        return cell
+        
+
+        
+        cell.firstName.text = user["FirstName"] as? String
+        cell.lastName.text = user["LastName"] as? String
+            return cell
+    
     }
     
-
+    
+    
+    @IBAction func eventGesture(_ sender: Any) {
+       /* let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let secondViewController = storyBoard.instantiateViewControllerWithIdentifier("secondView") as SecondViewController
+                self.presentViewController(secondViewController, animated:true, completion:nil)
+            */
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -75,7 +115,7 @@ class AllEventsController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
