@@ -14,25 +14,39 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var firstNameText: UITextField!
-    @IBOutlet weak var nameLabel: UILabel!
+    //@IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userNameText: UITextField!
     
     
     @IBOutlet weak var profilePicture: UIImageView!
     
-    let user = PFUser.current()
+    let currentUser = PFUser.current()
   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nameLabel.text = user?["username"] as? String
+        //profilePicture.layer.mask = shape
+        profilePicture.layer.cornerRadius = profilePicture.layer.bounds.width / 2
+        profilePicture.clipsToBounds = true
+        profilePicture.layer.borderColor = UIColor.darkGray.cgColor
+        profilePicture.layer.borderWidth = 2.0
         
-        self.profilePicture = user?["image"] as? UIImageView
-        self.firstNameText.text = user?["FirstName"] as? String
-        self.lastNameText.text = user?["LastName"] as? String
-        self.userNameText.text = user?["username"] as? String
-        self.emailText.text = user?["email"] as? String
+        //self.nameLabel.text = user?["username"] as? String
+        
+        //self.profilePicture = user?["image"] as? UIImageView
+        self.firstNameText.text = currentUser?["FirstName"] as? String
+        self.lastNameText.text = currentUser?["LastName"] as? String
+        self.userNameText.text = currentUser?["username"] as? String
+        self.emailText.text = currentUser?["email"] as? String
+        
+        
+        let imageFile = currentUser?["image"] as! PFFileObject
+        let urlString = imageFile.url!
+        let url = URL(string: urlString)!
+        self.profilePicture.af.setImage(withURL: url)
+        
+        //self.profilePicture.image = currentUser?["image"] as? UIImage
 
        // let imageFile = user?["image"] as! PFFileObject
         //let urlString = imageFile.url!
@@ -41,20 +55,50 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         //profilePicture.af.setImage(withURL: url)
         // Do any additional setup after loading the view.
     }
-   
+    
+    
+    
+    @IBAction func PictureUpdate(_ sender: Any) {
+        
+        let imageData = profilePicture.image!.pngData()
+        let file = PFFileObject(name: "image.png", data: imageData!)
+    
+        currentUser?["image"] = file
+        
+        
+        
+        currentUser?.saveInBackground {(success, error) in
+            if success{
+                
+                self.dismiss(animated: true, completion: nil)
+                print("Photo Profile saved")
+                let main = UIStoryboard(name: "Main", bundle: nil)
+                let ProfileViewController = main.instantiateViewController(withIdentifier: "ProfileViewController")
+                
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return} // check window
+                delegate.window?.rootViewController = ProfileViewController
+                
+            }
+            else
+            {
+                print("error!")
+            }
+        }
+    }
+
     
     @IBAction func onUpdateButton(_ sender: Any) {
-        print("Working")
+        /*print("Working")
         
         user?["FirstName"] = self.firstNameText.text
         user?["LastName"] = self.lastNameText.text
         user?["username"] = self.userNameText.text
         user?["email"] = self.emailText.text
         
-        let imageData = profilePicture.image!.pngData()
-        let file = PFFileObject(name: "image.png", data: imageData!)
+        //let imageData = profilePicture.image!.pngData()
+       // let file = PFFileObject(name: "image.png", data: imageData!)
     
-        user?["image"] = file
+        //user?["image"] = file
         user?.saveInBackground{ (success,error) in
             if success{
                 self.dismiss(animated: true)
@@ -65,7 +109,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
                 print("error!")
             }
         
-        }
+        }*/
         
 
         
@@ -79,7 +123,8 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         picker.allowsEditing = true
         
         if UIImagePickerController.isSourceTypeAvailable(.camera){
-            picker.sourceType = .camera
+           // picker.sourceType = .camera
+            picker.sourceType = .photoLibrary
         }
         else{
             picker.sourceType = .photoLibrary
@@ -90,11 +135,13 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
-        let size = CGSize(width: 300, height: 300)
-        let scaledImage = image.af.imageScaled(to: size)
+        let size = CGSize(width: 180, height: 180)
+        let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         profilePicture.image = scaledImage
-        dismiss(animated: true)
+        dismiss(animated: true, completion: nil)
+        
+
     }
     
     @IBAction func onLogout(_ sender: Any) {

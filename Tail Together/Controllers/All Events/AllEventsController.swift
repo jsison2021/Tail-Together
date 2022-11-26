@@ -17,6 +17,8 @@ class AllEventsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
@@ -81,14 +83,50 @@ class AllEventsController: UITableViewController {
         cell.timeLabel.text = event["timeText"] as? String
         cell.eventNameLabel.text = event["nameText"] as? String
         
-        
-
-        
         cell.firstName.text = user["FirstName"] as? String
         cell.lastName.text = user["LastName"] as? String
-            return cell
-    
+        
+        let imageFile = user["image"] as! PFFileObject
+        let urlString = imageFile.url!
+        let url = URL(string: urlString)!
+        cell.profileImage.af.setImage(withURL: url)
+        
+        /*let imageFile = user["image"] as! PFFileObject
+        
+        
+        
+        
+        let urlString = imageFile.url!
+        let url = URL(string: urlString)!
+        cell.profileImage.af.setImage(withURL: url)
+        
+        if let profileImage = user["image"] {
+            
+            let postImagePFFile = profileImage as! PFFileObject
+            
+            postImagePFFile.getDataInBackground(block: {
+                (imageData, error) -> Void in
+                if error == nil {
+                    if let imageData = imageData {
+                        let image = UIImage(data:imageData)
+                        cell.profileImage.image = image
+                    }
+                }
+            })
+        }*/
+        return cell
     }
+       /* else
+        {
+            let urlString = ("https://media-exp1.licdn.com/dms/image/C4E03AQE6xmc94aGJ8A/profile-displayphoto-shrink_800_800/0/1659707946414?e=2147483647&v=beta&t=cSxby8W6DKQrkKcM0foc4KMkgGhJxprV5P-vTxF--bU")
+            let url = URL(string: urlString)!
+            /*var imageUrl = URL(string: "https://media-exp1.licdn.com/dms/image/C4E03AQE6xmc94aGJ8A/profile-displayphoto-shrink_800_800/0/1659707946414?e=2147483647&v=beta&t=cSxby8W6DKQrkKcM0foc4KMkgGhJxprV5P-vTxF--bU")*/
+            cell.profileImage.af.setImage(withURL: url)
+            //cell.profileImage.image = imageUrl)*/
+        
+            
+    
+    
     
     
     

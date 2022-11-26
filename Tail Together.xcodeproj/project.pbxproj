@@ -100,7 +100,6 @@
 		297122C429187AE400DFB003 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				295722BC29131360003CCFC4 /* FIrstViewController.swift */,
 				297122D429187E8300DFB003 /* Login */,
 				D028BAB7292DD473004BFACC /* Profile */,
 				D028BAB6292DD462004BFACC /* Messages */,
@@ -155,6 +154,7 @@
 		297122D429187E8300DFB003 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				295722BC29131360003CCFC4 /* FIrstViewController.swift */,
 				295722BE291314C3003CCFC4 /* SignUpViewController.swift */,
 				295722C0291314D3003CCFC4 /* SignOnViewController.swift */,
 			);
