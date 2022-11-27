@@ -15,10 +15,12 @@
 		295722BD29131360003CCFC4 /* FIrstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722BC29131360003CCFC4 /* FIrstViewController.swift */; };
 		295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722BE291314C3003CCFC4 /* SignUpViewController.swift */; };
 		295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722C0291314D3003CCFC4 /* SignOnViewController.swift */; };
+		295E9AEA2932E28400298ACD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E9AE92932E28400298ACD /* EditProfileViewController.swift */; };
 		29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DC2913552800A08C18 /* MessageViewController.swift */; };
 		29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DE291355DC00A08C18 /* MessageCell.swift */; };
 		29BDCD2F2930215C00D53BF2 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDCD2E2930215C00D53BF2 /* CreateEventViewController.swift */; };
 		29D921552931CF4000B2FE88 /* AllEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D921542931CF4000B2FE88 /* AllEventsController.swift */; };
+		29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D9215A293271D700B2FE88 /* ProfileViewController2.swift */; };
 		B2C62745A3F265FFFD65981B /* Pods_Tail_Together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */; };
 		D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028BABA292DE319004BFACC /* ProfileViewController.swift */; };
 		D05AE1F829314C790022BD0C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05AE1F729314C790022BD0C /* EventCell.swift */; };
@@ -35,10 +37,12 @@
 		295722BC29131360003CCFC4 /* FIrstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIrstViewController.swift; sourceTree = "<group>"; };
 		295722BE291314C3003CCFC4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		295722C0291314D3003CCFC4 /* SignOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOnViewController.swift; sourceTree = "<group>"; };
+		295E9AE92932E28400298ACD /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		29B539DC2913552800A08C18 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		29B539DE291355DC00A08C18 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		29BDCD2E2930215C00D53BF2 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateEventViewController.swift; path = "Tail Together/Models/CreateEventViewController.swift"; sourceTree = SOURCE_ROOT; };
 		29D921542931CF4000B2FE88 /* AllEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEventsController.swift; sourceTree = "<group>"; };
+		29D9215A293271D700B2FE88 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
 		3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tail_Together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D028BABA292DE319004BFACC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D05AE1F729314C790022BD0C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				D028BABA292DE319004BFACC /* ProfileViewController.swift */,
+				29D9215A293271D700B2FE88 /* ProfileViewController2.swift */,
+				295E9AE92932E28400298ACD /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -326,11 +332,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295E9AEA2932E28400298ACD /* EditProfileViewController.swift in Sources */,
 				295722BD29131360003CCFC4 /* FIrstViewController.swift in Sources */,
 				295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */,
 				29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */,
 				294AB1CF29120AC1004C7E18 /* AppDelegate.swift in Sources */,
 				295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */,
+				29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */,
 				D05AE1F829314C790022BD0C /* EventCell.swift in Sources */,
 				294AB1D129120AC1004C7E18 /* SceneDelegate.swift in Sources */,
 				D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */,

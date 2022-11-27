@@ -9,76 +9,85 @@ import UIKit
 import Parse
 import AlamofireImage
 
-class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-
-    @IBOutlet weak var emailText: UITextField!
-    @IBOutlet weak var lastNameText: UITextField!
-    @IBOutlet weak var firstNameText: UITextField!
-    //@IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var userNameText: UITextField!
+class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    @IBOutlet weak var ProfileView: UIView!
+    @IBOutlet weak var profilePicture2: UIImageView!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileScrollView: UIScrollView!
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel! 
+    @IBOutlet weak var detailsLabel: UIView!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     
-    
-    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var gender: UILabel!
     
     let currentUser = PFUser.current()
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //profilePicture.layer.mask = shape
-        profilePicture.layer.cornerRadius = profilePicture.layer.bounds.width / 2
-        profilePicture.clipsToBounds = true
-        profilePicture.layer.borderColor = UIColor.darkGray.cgColor
-        profilePicture.layer.borderWidth = 2.0
-        
-        //self.nameLabel.text = user?["username"] as? String
-        
-        //self.profilePicture = user?["image"] as? UIImageView
-        self.firstNameText.text = currentUser?["FirstName"] as? String
-        self.lastNameText.text = currentUser?["LastName"] as? String
-        self.userNameText.text = currentUser?["username"] as? String
-        self.emailText.text = currentUser?["email"] as? String
+        //Round Profile picture
+        profilePicture2.layer.cornerRadius = profilePicture2.layer.bounds.width / 2
+        profilePicture2.clipsToBounds = true
+        profilePicture2.layer.borderColor = UIColor.orange.cgColor
+        profilePicture2.layer.borderWidth = 2.0
         
         
+        
+        //Get user info from Database
+        self.firstNameLabel.text = currentUser?["FirstName"] as? String
+        self.lastNameLabel.text = currentUser?["LastName"] as? String
+        self.usernameLabel.text = currentUser?.username
+        
+        let phone = currentUser?["PhoneNumbber"] as? String
+        let gender = currentUser?["Gender"] as? String
+    
+        if phone != nil{
+            self.phoneNumberLabel.text = phone
+        }
+        else
+        {
+            self.phoneNumberLabel.text = "(XXX)-XXX-XXXX"
+        }
+        
+        if gender != nil{
+            self.gender.text = gender
+        }
+        else
+        {
+            self.gender.text = "N/A"
+        }
+      
+        
+        
+        self.emailLabel.text = currentUser?.email
+       
+       //get user profile picture
         let imageFile = currentUser?["image"] as! PFFileObject
         let urlString = imageFile.url!
         let url = URL(string: urlString)!
-        self.profilePicture.af.setImage(withURL: url)
-        
-        //self.profilePicture.image = currentUser?["image"] as? UIImage
-
-       // let imageFile = user?["image"] as! PFFileObject
-        //let urlString = imageFile.url!
-        //let url = URL(string: urlString)!
-        
-        //profilePicture.af.setImage(withURL: url)
-        // Do any additional setup after loading the view.
+        self.profilePicture2.af.setImage(withURL: url)
     }
     
     
     
     @IBAction func PictureUpdate(_ sender: Any) {
         
-        let imageData = profilePicture.image!.pngData()
+        //Update Profile picture
+        let imageData = profilePicture2.image!.pngData()
         let file = PFFileObject(name: "image.png", data: imageData!)
-    
         currentUser?["image"] = file
-        
-        
         
         currentUser?.saveInBackground {(success, error) in
             if success{
-                
                 self.dismiss(animated: true, completion: nil)
                 print("Photo Profile saved")
                 let main = UIStoryboard(name: "Main", bundle: nil)
-                let ProfileViewController = main.instantiateViewController(withIdentifier: "ProfileViewController")
+                let ProfileViewController2 = main.instantiateViewController(withIdentifier: "ProfileViewController2")
                 
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return} // check window
-                delegate.window?.rootViewController = ProfileViewController
-                
+                delegate.window?.rootViewController = ProfileViewController2
             }
             else
             {
@@ -116,8 +125,7 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
     }
     
-    
-    @IBAction func onCameraButton(_ sender: Any) {
+    @IBAction func onCameraButton2(_ sender: Any) {
         print("Working")
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -131,21 +139,28 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
             picker.sourceType = .photoLibrary
         }
         present(picker,animated: true, completion: nil)
+        
     }
- 
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         let size = CGSize(width: 180, height: 180)
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
-        profilePicture.image = scaledImage
+        profilePicture2.image = scaledImage
         dismiss(animated: true, completion: nil)
-        
-
+    
     }
     
-    @IBAction func onLogout(_ sender: Any) {
+    
+    @IBAction func editProfileButton(_ sender: Any) {
+        
+    }
+    
+    
+   @IBAction func onLogout(_ sender: Any) {
         PFUser.logOut()
         
         let main = UIStoryboard(name: "Main", bundle: nil)
@@ -155,15 +170,5 @@ class ProfileViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         delegate.window?.rootViewController = loginViewController
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
 }

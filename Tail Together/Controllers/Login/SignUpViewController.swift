@@ -52,7 +52,10 @@ class SignUpViewController: UIViewController {
         emaiError.text = " "
         usernameError.text = ""
         passwordError.text = ""
-         
+        
+        user["PhoneNumbber"] = "(XXX)-XXX-XXXX"
+        user["Gender"] = "N/A"
+        
         //Sign up button perform this after checking for validate form
         user.signUpInBackground {(success, error) in
             if success{
