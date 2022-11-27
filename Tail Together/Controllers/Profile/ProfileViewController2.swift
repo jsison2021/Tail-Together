@@ -40,7 +40,7 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
         self.lastNameLabel.text = currentUser?["LastName"] as? String
         self.usernameLabel.text = currentUser?.username
         
-        let phone = currentUser?["PhoneNumbber"] as? String
+        let phone = currentUser?["PhoneNumber"] as? String
         let gender = currentUser?["Gender"] as? String
     
         if phone != nil{
@@ -72,7 +72,7 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
     
     
     
-    @IBAction func PictureUpdate(_ sender: Any) {
+   /* @IBAction func PictureUpdate(_ sender: Any) {
         
         //Update Profile picture
         let imageData = profilePicture2.image!.pngData()
@@ -98,7 +98,7 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
 
     
     @IBAction func onUpdateButton(_ sender: Any) {
-        /*print("Working")
+        print("Working")
         
         user?["FirstName"] = self.firstNameText.text
         user?["LastName"] = self.lastNameText.text
@@ -119,7 +119,7 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
                 print("error!")
             }
         
-        }*/
+        }
         
 
         
@@ -154,10 +154,7 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
     
     }
     
-    
-    @IBAction func editProfileButton(_ sender: Any) {
-        
-    }
+*/
     
     
    @IBAction func onLogout(_ sender: Any) {

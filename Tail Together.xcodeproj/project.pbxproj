@@ -22,7 +22,6 @@
 		29D921552931CF4000B2FE88 /* AllEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D921542931CF4000B2FE88 /* AllEventsController.swift */; };
 		29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D9215A293271D700B2FE88 /* ProfileViewController2.swift */; };
 		B2C62745A3F265FFFD65981B /* Pods_Tail_Together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */; };
-		D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028BABA292DE319004BFACC /* ProfileViewController.swift */; };
 		D05AE1F829314C790022BD0C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05AE1F729314C790022BD0C /* EventCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		29D921542931CF4000B2FE88 /* AllEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEventsController.swift; sourceTree = "<group>"; };
 		29D9215A293271D700B2FE88 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
 		3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tail_Together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D028BABA292DE319004BFACC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D05AE1F729314C790022BD0C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		E36083A7524E18A3A1F32D0F /* Pods-Tail Together.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tail Together.debug.xcconfig"; path = "Target Support Files/Pods-Tail Together/Pods-Tail Together.debug.xcconfig"; sourceTree = "<group>"; };
 		E7644BBA0AC225F0EA17F8BB /* Pods-Tail Together.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tail Together.release.xcconfig"; path = "Target Support Files/Pods-Tail Together/Pods-Tail Together.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 		D028BAB7292DD473004BFACC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D028BABA292DE319004BFACC /* ProfileViewController.swift */,
 				29D9215A293271D700B2FE88 /* ProfileViewController2.swift */,
 				295E9AE92932E28400298ACD /* EditProfileViewController.swift */,
 			);
@@ -341,7 +338,6 @@
 				29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */,
 				D05AE1F829314C790022BD0C /* EventCell.swift in Sources */,
 				294AB1D129120AC1004C7E18 /* SceneDelegate.swift in Sources */,
-				D028BABB292DE319004BFACC /* ProfileViewController.swift in Sources */,
 				29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */,
 				29BDCD2F2930215C00D53BF2 /* CreateEventViewController.swift in Sources */,
 				29D921552931CF4000B2FE88 /* AllEventsController.swift in Sources */,

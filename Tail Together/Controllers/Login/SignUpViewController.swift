@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController {
         usernameError.text = ""
         passwordError.text = ""
         
-        user["PhoneNumbber"] = "(XXX)-XXX-XXXX"
+        user["PhoneNumber"] = "(XXX)-XXX-XXXX"
         user["Gender"] = "N/A"
         
         //Sign up button perform this after checking for validate form
@@ -178,9 +178,7 @@ class SignUpViewController: UIViewController {
         if !predicate.evaluate(with: value){
             return "Invalid Email Address"
         }
-        if EmailField.state.isEmpty{
-            EmailField.placeholder = "Email required"
-        }
+    
         return nil
     }
     
