@@ -1,5 +1,5 @@
 //
-//  AllEventsController.swift
+//  EventTableViewController.swift
 //  Tail Together
 //
 //  Created by Justin on 11/25/22.
@@ -7,57 +7,57 @@
 
 import UIKit
 import Parse
-
-class AllEventsController: UITableViewController {
+class EventTableViewController: UITableViewController {
 
     var events = [PFObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-
     // MARK: - Table view data source
-
+    
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let query = PFQuery(className: "Events")
-        query.includeKey("author")
-        query.limit = 20
-        
-        query.findObjectsInBackground{ (events,error) in
-            if events != nil {
-                self.events = events!
-                self.tableView.reloadData()
-            }
+            super.viewDidAppear(animated)
             
+            let query = PFQuery(className: "Events")
+            query.includeKey("author")
+            query.limit = 20
+            
+            query.findObjectsInBackground{ (events,error) in
+                if events != nil {
+                    self.events = events!
+                    self.tableView.reloadData()
+                }
+                
+            }
         }
-    }
- 
 
+   /* override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 4
+    }
+*/
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+        // #warning Incomplete implementation, return the number of rows
         return events.count
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell" )as! EventCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
 
         let event = events[indexPath.row]
         
-        let user = event["author"] as! PFUser
-        //cell.eventNameLabel.text = event["nameText"] as? String
-        cell.hostLabel.text = user.username
-        
-        cell.dataLabel.text = event["dateText"]as? String
-        cell.timeLabel.text = event["timeText"] as? String
-        
+        cell.eventNameLabel.text = "hello"
+        cell.hostLabel.text = "hi"
+
         return cell
     }
     
