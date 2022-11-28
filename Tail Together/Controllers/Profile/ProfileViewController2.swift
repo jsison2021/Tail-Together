@@ -64,10 +64,16 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
         self.emailLabel.text = currentUser?.email
        
        //get user profile picture
-        let imageFile = currentUser?["image"] as! PFFileObject
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)!
-        self.profilePicture2.af.setImage(withURL: url)
+        let imageFile = currentUser?["image"] as? PFFileObject
+        if ((imageFile == nil)){
+            
+        }
+        else{
+            let urlString = imageFile?.url!
+            let url = URL(string: urlString!)!
+            self.profilePicture2.af.setImage(withURL: url)
+        }
+       
     }
     
     
