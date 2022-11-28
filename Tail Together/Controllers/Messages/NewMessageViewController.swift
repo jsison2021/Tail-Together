@@ -21,7 +21,21 @@ class NewMessageViewController: UIViewController {
     }
     
     @IBAction func newMessageButton(_ sender: Any) {
-        print("doing something")
+        let convo = PFObject(className: "Conversations")
+        convo["Account1"] = self.resultLabel.text
+        convo["Account2"] = PFUser.current()!
+        convo["Message"] = ""
+        
+        convo.saveInBackground{ (success,error) in
+            if success{
+                
+                print("saved")
+            }
+            else{
+                print("error!")
+            }
+        
+        }
     }
     
     @IBOutlet weak var statusButton: UIButton!
