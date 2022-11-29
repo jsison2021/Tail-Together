@@ -126,3 +126,6 @@ https://imgur.com/a/wZ4c8rW
 
 11/22
 https://imgur.com/a/wyYa8ys
+
+11/29
+https://imgur.com/a/QBCh162
