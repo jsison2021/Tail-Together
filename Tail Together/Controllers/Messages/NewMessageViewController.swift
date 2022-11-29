@@ -12,7 +12,7 @@ class NewMessageViewController: UIViewController {
   
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
-    
+    var filteredUsers = [PFUser()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,11 @@ class NewMessageViewController: UIViewController {
     
     @IBAction func newMessageButton(_ sender: Any) {
         let convo = PFObject(className: "Conversations")
-        convo["Account1"] = self.resultLabel.text
+        
+        let relation = convo.relation(forKey: "authors")
+        relation.add(filteredUsers.first!)
+        relation.add(PFUser.current()!)
+        convo["Account1"] = filteredUsers.first!
         convo["Account2"] = PFUser.current()!
         convo["Message"] = ""
         
@@ -36,6 +40,11 @@ class NewMessageViewController: UIViewController {
             }
         
         }
+        
+        // suppose we have a user we want to follow
+        
+
+        // create an entry in the Follow table
     }
     
     @IBOutlet weak var statusButton: UIButton!
@@ -45,9 +54,9 @@ class NewMessageViewController: UIViewController {
         
         query?.findObjectsInBackground {(object, error) in
             if let users = object as? [PFUser] {
-                let filteredUsers = users.filter { $0.username!.contains(self.searchField.text!) }
+                self.filteredUsers = users.filter { $0.username!.contains(self.searchField.text!) }
                 
-                self.resultLabel.text = filteredUsers.first?["username"] as? String
+                self.resultLabel.text = self.filteredUsers.first?["username"] as? String
                 if (self.resultLabel.text == nil) {
                     
                     self.statusButton.isHidden = true

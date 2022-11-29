@@ -38,10 +38,8 @@ class AllEventsController: UITableViewController {
                            //, "timeText", "dateText", "descText", "nameText", "timeText.author", "dateText.author", "descText.author", "nameText.author"])
         query.limit = 20
         
-        
-        
-        
         query.findObjectsInBackground{ (events,error) in
+         
             if events != nil {
                 self.events = events!
                 self.tableView.reloadData()
@@ -77,7 +75,7 @@ class AllEventsController: UITableViewController {
         
         let event = events[indexPath.row]
         let user = event["author"] as! PFUser
-        
+      
         cell.hostLabel.text = event["descText"] as? String
         cell.dataLabel.text = event["dateText"] as? String
         cell.timeLabel.text = event["timeText"] as? String
