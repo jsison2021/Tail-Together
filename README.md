@@ -30,7 +30,7 @@ This application allows users to chat with eachother on upcoming venues to meet 
 - [x] Profile page for the user
 - [x] Events that users can join
 - [x] Allowing an individual to make an event
-- Direct messaging to an individual
+- [ ] Direct messaging to an individual
 
 **Optional Nice-to-have Stories**
 
