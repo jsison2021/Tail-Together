@@ -15,7 +15,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var messages = [PFObject]()
     var otherUsers = [PFObject]()
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +25,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - Table view data source
+ 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -86,11 +86,12 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
           
-         
+        print(messages)
         let message = messages[indexPath.row]
         let user = message["Account2"] as? PFUser
         let currentUser = PFUser.current()
      
+    
         if (user?.objectId == currentUser?.objectId){
             let otherUser = message["Account1"] as? PFUser
             cell.FirstName.text = otherUser?["FirstName"] as? String
@@ -121,13 +122,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         }
     
-        /*
-        let imageFile = (user!["image"] as! PFFileObject)
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)!
-        cell.MessageProfile.af.setImage(withURL: url)
-       
-          */
     
           return cell
       }

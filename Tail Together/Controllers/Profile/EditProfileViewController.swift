@@ -9,8 +9,7 @@ import UIKit
 import Parse
 
 
-
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     @IBOutlet weak var UpdateButton: UIBarButtonItem!
     
@@ -32,31 +31,61 @@ class EditProfileViewController: UIViewController {
         PictureChange.layer.borderColor = UIColor.orange.cgColor
         PictureChange.layer.borderWidth = 2.0
 
+        self.newUsernameField.text = currentUser?.username
+        self.genderField.text = currentUser?["Gender"] as? String
+        self.newEmailField.text = currentUser?.email
+        self.phoneNumberField.text = currentUser?["PhoneNumber"] as? String
         //resetForm()
         // Do any additional setup after loading the view.
+        let imageFile = currentUser?["image"] as? PFFileObject
+        if ((imageFile == nil)){
+            
+        }
+        else{
+            let urlString = imageFile?.url!
+            let url = URL(string: urlString!)!
+            self.PictureChange.af.setImage(withURL: url)
+        }
     }
     
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 300, height: 300)
+        let scaledImage = image.af.imageScaled(to: size)
+        
+        PictureChange.image = scaledImage
+        
+        dismiss(animated: true)
+    }
     
+    @IBAction func updatePicture(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            picker.sourceType = .camera
+        }
+        else{
+            picker.sourceType = .photoLibrary
+        }
+        present(picker,animated: true, completion: nil)
+    }
     
     @IBAction func UpdateProfileButton(_ sender: Any) {
-        
+        let imageData = PictureChange.image!.pngData()
+        let file = PFFileObject(name: "image.png", data: imageData!)
         
         currentUser?.email = newEmailField.text
         currentUser?.username = newUsernameField.text
-        
         currentUser?["Gender"] = genderField.text
-      
-        currentUser?["Gender"] = phoneNumberField.text
-
+        currentUser?["PhoneNumber"] = phoneNumberField.text
+        currentUser?["image"] = file
         currentUser?.saveInBackground{(success, error) in
             if success{
-                
-                let main = UIStoryboard(name: "Main", bundle: nil)
-                let ProfileViewController2 = main.instantiateViewController(withIdentifier: "ProfileViewController2")
-                
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return} // check window
-                delegate.window?.rootViewController = ProfileViewController2
+                self.performSegue(withIdentifier: "backToProfileSegue", sender: Any?.self)
+                print("Success")
             }
             else {
                 print("Error: \(String(describing: error?.localizedDescription)))") //error sigh up
@@ -67,25 +96,6 @@ class EditProfileViewController: UIViewController {
     
     
     
-    @IBAction func usernameChanged(_ sender: Any) {
-    }
-    
-    @IBAction func genderChanged(_ sender: Any) {
-    }
-    
-    
-    
 
-    
-    @IBAction func emailChanged(_ sender: Any) {
-        
-
-    }
-    
-   
-    
-    @IBAction func phoneNumberChanged(_ sender: Any) {
-        
-    }
         
 }

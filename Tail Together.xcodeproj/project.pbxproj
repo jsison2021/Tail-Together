@@ -23,6 +23,7 @@
 		29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D9215A293271D700B2FE88 /* ProfileViewController2.swift */; };
 		B2C62745A3F265FFFD65981B /* Pods_Tail_Together.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */; };
 		D00E568A29406DCC006E5C27 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00E568929406DCC006E5C27 /* CommentCell.swift */; };
+		D00E568C294114FC006E5C27 /* MyEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00E568B294114FB006E5C27 /* MyEventsTableViewController.swift */; };
 		D05AE1F829314C790022BD0C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05AE1F729314C790022BD0C /* EventCell.swift */; };
 		D088F62B293F061E002D2ED3 /* MessageLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088F62A293F061D002D2ED3 /* MessageLogTableViewController.swift */; };
 		D09F110D29353307004483C1 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F110C29353307004483C1 /* NewMessageViewController.swift */; };
@@ -49,6 +50,7 @@
 		29D9215A293271D700B2FE88 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
 		3CDB2283869B981A206C086B /* Pods_Tail_Together.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tail_Together.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D00E568929406DCC006E5C27 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		D00E568B294114FB006E5C27 /* MyEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsTableViewController.swift; sourceTree = "<group>"; };
 		D05AE1F729314C790022BD0C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D088F62A293F061D002D2ED3 /* MessageLogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLogTableViewController.swift; sourceTree = "<group>"; };
 		D09F110C29353307004483C1 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		D028BAB4292DD3F8004BFACC /* My Events */ = {
 			isa = PBXGroup;
 			children = (
+				D00E568B294114FB006E5C27 /* MyEventsTableViewController.swift */,
 			);
 			path = "My Events";
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */,
 				29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */,
 				D088F62B293F061E002D2ED3 /* MessageLogTableViewController.swift in Sources */,
+				D00E568C294114FC006E5C27 /* MyEventsTableViewController.swift in Sources */,
 				294AB1CF29120AC1004C7E18 /* AppDelegate.swift in Sources */,
 				295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */,
 				29D9215B293271D700B2FE88 /* ProfileViewController2.swift in Sources */,

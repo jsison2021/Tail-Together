@@ -13,7 +13,7 @@ class NewMessageViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
     var filteredUsers = [PFUser()]
-
+    var temp = [PFObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +21,18 @@ class NewMessageViewController: UIViewController {
     }
     
     @IBAction func newMessageButton(_ sender: Any) {
+        
+        
+        
+              
         let convo = PFObject(className: "Conversations")
-        
-        
         let messages  = PFObject(className: "Messages")
         let relation = convo.relation(forKey: "authors")
-        relation.add(filteredUsers.first!)
+        relation.add(self.filteredUsers.first!)
         relation.add(PFUser.current()!)
         convo["Account1"] = PFUser.current()!
-        convo["Account2"] = filteredUsers.first!
+        convo["Account2"] = self.filteredUsers.first!
+        
         convo.add(messages, forKey: "messages")
         
         
@@ -43,6 +46,8 @@ class NewMessageViewController: UIViewController {
             }
         
         }
+    
+      
         
         // suppose we have a user we want to follow
         

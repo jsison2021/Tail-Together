@@ -18,6 +18,7 @@ class EventDetailsTableViewController: UITableViewController {
     var eventText = ""
     var eventId = ""
     var comments = [PFObject]()
+    var temp = [PFObject]()
     
     @IBOutlet weak var eventPoster: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,6 +27,7 @@ class EventDetailsTableViewController: UITableViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var eventLabel: UILabel!
     
+    @IBOutlet weak var addedButton: UIButton!
     @IBOutlet weak var newCommentField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,6 @@ class EventDetailsTableViewController: UITableViewController {
         self.timeLabel.text = time
         self.descLabel.text = desc
         
-        print(eventId)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -70,6 +71,36 @@ class EventDetailsTableViewController: UITableViewController {
    }
     
     @IBAction func addingEvent(_ sender: Any) {
+        let query = PFQuery(className: "Events")
+        query.includeKeys(["events"])
+        query.whereKey("objectId", equalTo: eventId)
+        query.addDescendingOrder("createdAt")
+    
+        
+        query.findObjectsInBackground {(messages, error) in
+            if messages != nil {
+                self.temp = messages!
+                let addEvent = PFObject(className: "EventUser")
+                
+                addEvent["event"] = self.temp[0]
+                addEvent["author"] = PFUser.current()!
+             
+                addEvent.saveInBackground{ (success,error) in
+                    if success{
+                        self.addedButton.setImage(UIImage(systemName: "checkmark"), for: UIControl.State.normal)
+                        print("saved")
+                    }
+                    else{
+                        print("error!")
+                    }
+                
+                }
+            
+            }
+             
+        }
+        
+        
     }
     @IBAction func newCommentButton(_ sender: Any) {
         let commenting = PFObject(className: "Comments")

@@ -20,7 +20,6 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
     @IBOutlet weak var lastNameLabel: UILabel! 
     @IBOutlet weak var detailsLabel: UIView!
     @IBOutlet weak var phoneNumberLabel: UILabel!
-    
     @IBOutlet weak var gender: UILabel!
     
     let currentUser = PFUser.current()
@@ -39,29 +38,23 @@ class ProfileViewController2: UIViewController,UIImagePickerControllerDelegate,U
         self.firstNameLabel.text = currentUser?["FirstName"] as? String
         self.lastNameLabel.text = currentUser?["LastName"] as? String
         self.usernameLabel.text = currentUser?.username
+        self.emailLabel.text = currentUser?.email
         
-        let phone = currentUser?["PhoneNumber"] as? String
-        let gender = currentUser?["Gender"] as? String
-    
-        if phone != nil{
-            self.phoneNumberLabel.text = phone
+        if currentUser?["PhoneNumber"] as? String == nil{
+            
         }
-        else
-        {
-            self.phoneNumberLabel.text = "(XXX)-XXX-XXXX"
+        if currentUser?["PhoneNumber"] as? String != nil{
+            self.phoneNumberLabel.text = currentUser?["PhoneNumber"] as? String
+           
         }
-        
-        if gender != nil{
-            self.gender.text = gender
+        if currentUser?["Gender"] as? String == nil{
+            
         }
-        else
-        {
-            self.gender.text = "N/A"
+        if currentUser?["Gender"] as? String != nil{
+            self.gender.text = currentUser?["Gender"] as? String
         }
       
         
-        
-        self.emailLabel.text = currentUser?.email
        
        //get user profile picture
         let imageFile = currentUser?["image"] as? PFFileObject
