@@ -28,9 +28,9 @@ This application allows users to chat with eachother on upcoming venues to meet 
 
 - [x] User logs in to access the applicaiton
 - [x] Profile page for the user
-- [ ] Events that users can join
+- [x] Events that users can join
 - [x] Allowing an individual to make an event
-- [ ] Direct messaging to an individual
+- [x] Direct messaging to an individual
 
 **Optional Nice-to-have Stories**
 
@@ -129,3 +129,6 @@ https://imgur.com/a/wyYa8ys
 
 11/29
 https://imgur.com/a/QBCh162
+
+12/6
+https://imgur.com/a/AueLvVu
