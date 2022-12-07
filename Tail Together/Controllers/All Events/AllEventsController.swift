@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
 class AllEventsController: UITableViewController {
 
@@ -48,7 +49,26 @@ class AllEventsController: UITableViewController {
             
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+           if segue.identifier == "eventSegue" {
+               let secondVC: EventDetailsTableViewController = segue.destination as! EventDetailsTableViewController
+               let cell = sender as! UITableViewCell
+               let indexPath = tableView.indexPath(for: cell)
+
+               let event = events[indexPath!.row]
+        
+               let user = event["author"] as! PFUser
+               
+               secondVC.firstName = user["FirstName"] as! String
+               secondVC.lastName = user["LastName"] as! String
+               secondVC.date = event["dateText"] as! String
+               secondVC.time = event["timeText"] as! String
+               secondVC.desc = event["descText"] as! String
+               secondVC.eventText = event["nameText"] as! String
+               secondVC.eventId = event.objectId!
+           }
+       }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,14 +80,7 @@ class AllEventsController: UITableViewController {
         return 1*/
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 190
-    }
+  
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
@@ -85,34 +98,23 @@ class AllEventsController: UITableViewController {
         cell.firstName.text = user["FirstName"] as? String
         cell.lastName.text = user["LastName"] as? String
         
-        let imageFile = user["image"] as! PFFileObject
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)!
-        cell.profileImage.af.setImage(withURL: url)
-        
-        /*let imageFile = user["image"] as! PFFileObject
-        
-        
-        
-        
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)!
-        cell.profileImage.af.setImage(withURL: url)
-        
-        if let profileImage = user["image"] {
+        let imageFile = user["image"] as? PFFileObject
+        if ((imageFile == nil)){
+        }
+        if ((imageFile != nil)){
+            let urlString = imageFile?.url!
+            let url = URL(string: urlString!)!
+            cell.profileImage.af.setImage(withURL: url)
+        }
+        let imageFile2 = event["image"] as? PFFileObject
+        if ((imageFile2 == nil)){
             
-            let postImagePFFile = profileImage as! PFFileObject
-            
-            postImagePFFile.getDataInBackground(block: {
-                (imageData, error) -> Void in
-                if error == nil {
-                    if let imageData = imageData {
-                        let image = UIImage(data:imageData)
-                        cell.profileImage.image = image
-                    }
-                }
-            })
-        }*/
+        }
+        if ((imageFile2 != nil)){
+            let urlString = imageFile2?.url!
+            let url = URL(string: urlString!)!
+            cell.eventImage.af.setImage(withURL: url)
+        }
         return cell
     }
        /* else

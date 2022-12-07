@@ -1,5 +1,5 @@
 //
-//  MessageLogTableViewController.swift
+//  EventDetailsTableViewController.swift
 //  Tail Together
 //
 //  Created by Justin on 12/6/22.
@@ -8,71 +8,79 @@
 import UIKit
 import Parse
 
+class EventDetailsTableViewController: UITableViewController {
 
-class MessageLogTableViewController: UITableViewController {
-
-   
     var firstName = ""
     var lastName = ""
-    var objectId = ""
-  
-   
-    var messages = [PFObject]()
+    var date = ""
+    var time = ""
+    var desc = ""
+    var eventText = ""
+    var eventId = ""
+    var comments = [PFObject]()
+    
+    @IBOutlet weak var eventPoster: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel!
     
-    @IBOutlet weak var newMessageField: UITextField!
-    
+    @IBOutlet weak var newCommentField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.separatorStyle = .none
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
+
+        self.eventLabel.text = eventText
         self.nameLabel.text = firstName + " " + lastName
+        self.dateLabel.text = date
+        self.timeLabel.text = time
+        self.descLabel.text = desc
         
-        
+        print(eventId)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
- 
-     func findingData(){
-        let query = PFQuery(className: "Messages")
-        query.includeKeys(["conversations","messageText","author","createdAt"])
-        query.whereKey("conversations", equalTo: objectId)
-        query.addDescendingOrder("createdAt")
-        query.findObjectsInBackground {(messages, error) in
-            
-            if messages != nil {
-                self.messages = messages!
-                self.tableView.reloadData()
-            
-            }
-            
-        }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-     
-       
-        findingData()
-        
-    }
+
     // MARK: - Table view data source
 
-    @IBAction func sendMessage(_ sender: Any) {
-        let newMessage = PFObject(className: "Messages")
+    func findingData(){
+       let query = PFQuery(className: "Comments")
+       query.includeKeys(["events","commentText","author","createdAt"])
+       query.whereKey("events", equalTo: eventId)
+       query.addDescendingOrder("createdAt")
+       query.findObjectsInBackground {(messages, error) in
+           
+           if messages != nil {
+               self.comments = messages!
+               self.tableView.reloadData()
+           
+           }
+           
+       }
+   }
+   override func viewDidAppear(_ animated: Bool) {
+       super.viewDidAppear(animated)
+    
+      
+       findingData()
+       
+   }
+    
+    @IBAction func addingEvent(_ sender: Any) {
+    }
+    @IBAction func newCommentButton(_ sender: Any) {
+        let commenting = PFObject(className: "Comments")
         
-        newMessage["messageText"] = newMessageField.text
-        newMessage["conversations"] = objectId
-        newMessage["author"] = PFUser.current()!
+        commenting["commentText"] = newCommentField.text
+        commenting["events"] = eventId
+        commenting["author"] = PFUser.current()!
         
-        newMessage.saveInBackground{ (success,error) in
+        commenting.saveInBackground{ (success,error) in
             if success{
-                self.newMessageField.text = ""
+                self.newCommentField.text = ""
                 self.findingData()
                 print("saved")
             }
@@ -81,43 +89,28 @@ class MessageLogTableViewController: UITableViewController {
             }
         
         }
-
     }
-    
+   
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return messages.count
+        return comments.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageLogCell") as! MessageLogCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
 
+        
         // Configure the cell...
-        let message = messages[indexPath.row]
+        let comment = comments[indexPath.row]
+        let commentUser = comment["author"] as! PFUser
+        let created = comment.createdAt
         
-        let created = message.createdAt
-        
-        let messageUser = message["author"] as! PFUser
-        
-      
-        if (messageUser.objectId == PFUser.current()?.objectId){
-            cell.messageField.textAlignment = NSTextAlignment(.right)          
-            cell.messageField.text = message["messageText"] as? String
-            
-            cell.createdText.textAlignment = NSTextAlignment(.right)
-            cell.createdText.text = created?.formatted()
-            
-        }
-        if (messageUser.objectId != PFUser.current()?.objectId){
-            cell.messageField.textAlignment = NSTextAlignment(.left)
-            cell.messageField.text = message["messageText"] as? String
-            
-            cell.createdText.textAlignment = NSTextAlignment(.left)
-            cell.createdText.text = created?.formatted()
-        }
-        
-       
+        cell.nameLabel.text = commentUser["username"] as? String
+        cell.timeLabel.text = created?.formatted()
+        cell.commentTextLabel.text = comment["commentText"] as? String
+    
         return cell
     }
     
