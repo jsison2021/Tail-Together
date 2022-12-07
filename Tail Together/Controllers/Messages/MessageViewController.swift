@@ -7,7 +7,7 @@
 
 import UIKit
 import Parse
-
+import Alamofire
 
 class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +15,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var messages = [PFObject]()
     var otherUsers = [PFObject]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,28 +31,50 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidAppear(animated)
         
         let query = PFQuery(className: "Conversations")
-        query.includeKeys(["Account1","Account2"]);
+        query.includeKeys(["Account1","Account2","messages"])
+        query.whereKey("authors", equalTo: PFUser.current()!)
         
-        query.findObjectsInBackground{ (otherUsers,error) in
-            if otherUsers != nil {
-                self.otherUsers = otherUsers!
-                self.tableView.reloadData()
-               
-            }
+        query.findObjectsInBackground {(messages, error) in
             
-        }
-        
-        let queryTwo = PFQuery(className: "Conversations")
-        queryTwo.whereKey("authors", equalTo: PFUser.current()!)
-        
-        queryTwo.findObjectsInBackground {(messages, error) in
             if messages != nil {
                 self.messages = messages!
                 self.tableView.reloadData()
             
             }
+            
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+           if segue.identifier == "viewMessage" {
+               let secondVC: MessageLogTableViewController = segue.destination as! MessageLogTableViewController
+               let cell = sender as! UITableViewCell
+               let indexPath = tableView.indexPath(for: cell)
+
+               let message = messages[indexPath!.row]
+        
+               let user = message["Account2"] as? PFUser
+               let currentUser = PFUser.current()
+            
+               
+               if (user?.objectId == currentUser?.objectId){
+                   let otherUser = message["Account1"] as? PFUser
+                
+                   secondVC.firstName = otherUser?["FirstName"] as! String
+                   secondVC.lastName = otherUser?["LastName"] as! String
+                   secondVC.objectId = message.objectId!
+               }
+               if (user?.objectId != currentUser?.objectId){
+                   
+                   secondVC.firstName = user?["FirstName"] as! String
+                   secondVC.lastName = user?["LastName"] as! String
+                   secondVC.objectId = message.objectId!
+                  
+               }
+           }
+       }
     
     
     
@@ -59,24 +82,53 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
            return messages.count
            
        }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
           
-        
-          let message = messages[indexPath.row]
-        
-      //  print(otherUsers["Account1"])
          
-          
-         
-          //cell.FirstName.text = message["FirstName"] as? String
-         // cell.LastName.text = message["LastName"] as? String
-         
-      
-          
-          
+        let message = messages[indexPath.row]
+        let user = message["Account2"] as? PFUser
+        let currentUser = PFUser.current()
+     
+        if (user?.objectId == currentUser?.objectId){
+            let otherUser = message["Account1"] as? PFUser
+            cell.FirstName.text = otherUser?["FirstName"] as? String
+            cell.LastName.text = otherUser?["LastName"] as? String
+            let imageFile = otherUser?["image"] as? PFFileObject
+            if ((imageFile == nil)){
+                
+            }
+            else{
+                let urlString = imageFile?.url!
+                let url = URL(string: urlString!)!
+                cell.MessageProfile.af.setImage(withURL: url)
+            }
+        }
+        if (user?.objectId != currentUser?.objectId){
+            cell.FirstName.text = user?["FirstName"] as? String
+            cell.LastName.text = user?["LastName"] as? String
+            let imageFile = user?["image"] as? PFFileObject
+            if ((imageFile == nil)){
+                
+            }
+            else{
+                let urlString = imageFile?.url!
+                let url = URL(string: urlString!)!
+                cell.MessageProfile.af.setImage(withURL: url)
+            }
+            
+
+        }
+    
+        /*
+        let imageFile = (user!["image"] as! PFFileObject)
+        let urlString = imageFile.url!
+        let url = URL(string: urlString)!
+        cell.MessageProfile.af.setImage(withURL: url)
+       
+          */
+    
           return cell
       }
 }

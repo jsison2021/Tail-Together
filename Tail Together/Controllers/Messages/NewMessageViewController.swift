@@ -23,12 +23,15 @@ class NewMessageViewController: UIViewController {
     @IBAction func newMessageButton(_ sender: Any) {
         let convo = PFObject(className: "Conversations")
         
+        
+        let messages  = PFObject(className: "Messages")
         let relation = convo.relation(forKey: "authors")
         relation.add(filteredUsers.first!)
         relation.add(PFUser.current()!)
-        convo["Account1"] = filteredUsers.first!
-        convo["Account2"] = PFUser.current()!
-        convo["Message"] = ""
+        convo["Account1"] = PFUser.current()!
+        convo["Account2"] = filteredUsers.first!
+        convo.add(messages, forKey: "messages")
+        
         
         convo.saveInBackground{ (success,error) in
             if success{
