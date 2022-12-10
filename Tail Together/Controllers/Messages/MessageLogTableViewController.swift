@@ -15,7 +15,7 @@ class MessageLogTableViewController: UITableViewController {
     var firstName = ""
     var lastName = ""
     var objectId = ""
-  
+    
    
     var messages = [PFObject]()
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,6 +24,10 @@ class MessageLogTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newMessageField.layer.borderWidth = 1
+        newMessageField.layer.borderColor = UIColor.orange.cgColor
+        
         
         tableView.separatorStyle = .none
         self.tableView.delegate = self
@@ -90,9 +94,14 @@ class MessageLogTableViewController: UITableViewController {
     }
 
     
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageLogCell") as! MessageLogCell
 
+      
+     
+        
         // Configure the cell...
         let message = messages[indexPath.row]
         
@@ -102,26 +111,54 @@ class MessageLogTableViewController: UITableViewController {
         
       
         if (messageUser.objectId == PFUser.current()?.objectId){
-            cell.messageField.textAlignment = NSTextAlignment(.right)          
+            
+            cell.messageField.textAlignment = NSTextAlignment(.right)
             cell.messageField.text = message["messageText"] as? String
             
+            cell.layer.cornerRadius = 30
+            cell.backgroundColor = .link
+            cell.messageField.textColor = .white
+            cell.messageField.font = .systemFont(ofSize: 18)
+            cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.borderWidth = 2
+         
             cell.createdText.textAlignment = NSTextAlignment(.right)
             cell.createdText.text = created?.formatted()
             
+           
         }
         if (messageUser.objectId != PFUser.current()?.objectId){
+            
+            //cell.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+            
             cell.messageField.textAlignment = NSTextAlignment(.left)
             cell.messageField.text = message["messageText"] as? String
             
+           
+            
+            
+            cell.layer.cornerRadius = 30
+            cell.backgroundColor = .lightGray
+            cell.messageField.textColor = .black
+            cell.messageField.font = .systemFont(ofSize: 18)
+            cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.borderWidth = 2
+            
+         
+           
+
+            
+            
             cell.createdText.textAlignment = NSTextAlignment(.left)
             cell.createdText.text = created?.formatted()
+            
         }
         
        
         return cell
     }
-    
 
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
