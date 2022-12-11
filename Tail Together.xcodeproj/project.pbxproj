@@ -16,6 +16,7 @@
 		295722BF291314C3003CCFC4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722BE291314C3003CCFC4 /* SignUpViewController.swift */; };
 		295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295722C0291314D3003CCFC4 /* SignOnViewController.swift */; };
 		295E9AEA2932E28400298ACD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E9AE92932E28400298ACD /* EditProfileViewController.swift */; };
+		29AAF66D2945812E001E83D1 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AAF66C2945812E001E83D1 /* UserProfileViewController.swift */; };
 		29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DC2913552800A08C18 /* MessageViewController.swift */; };
 		29B539DF291355DC00A08C18 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B539DE291355DC00A08C18 /* MessageCell.swift */; };
 		29BDCD2F2930215C00D53BF2 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BDCD2E2930215C00D53BF2 /* CreateEventViewController.swift */; };
@@ -43,6 +44,7 @@
 		295722BE291314C3003CCFC4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		295722C0291314D3003CCFC4 /* SignOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOnViewController.swift; sourceTree = "<group>"; };
 		295E9AE92932E28400298ACD /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		29AAF66C2945812E001E83D1 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		29B539DC2913552800A08C18 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		29B539DE291355DC00A08C18 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		29BDCD2E2930215C00D53BF2 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateEventViewController.swift; path = "Tail Together/Models/CreateEventViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -219,6 +221,7 @@
 			children = (
 				29D9215A293271D700B2FE88 /* ProfileViewController2.swift */,
 				295E9AE92932E28400298ACD /* EditProfileViewController.swift */,
+				29AAF66C2945812E001E83D1 /* UserProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			files = (
 				295E9AEA2932E28400298ACD /* EditProfileViewController.swift in Sources */,
 				295722BD29131360003CCFC4 /* FIrstViewController.swift in Sources */,
+				29AAF66D2945812E001E83D1 /* UserProfileViewController.swift in Sources */,
 				D0A4585A293FD6650014EF7C /* MessageLogCell.swift in Sources */,
 				295722C1291314D3003CCFC4 /* SignOnViewController.swift in Sources */,
 				29B539DD2913552800A08C18 /* MessageViewController.swift in Sources */,

@@ -15,7 +15,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var messages = [PFObject]()
     var otherUsers = [PFObject]()
-    var lastMessage = " "
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,10 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         let query = PFQuery(className: "Conversations")
         query.includeKeys(["Account1","Account2","messages"])
         query.whereKey("authors", equalTo: PFUser.current()!)
-        query.findObjectsInBackground {(messages, error) in            if messages != nil {
+        
+        
+        query.findObjectsInBackground {(messages, error) in
+            if messages != nil {
                 self.messages = messages!
                 self.tableView.reloadData()
             
@@ -45,9 +48,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
-     
-    
-    
+      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
@@ -75,8 +76,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                    secondVC.firstName = user?["FirstName"] as! String
                    secondVC.lastName = user?["LastName"] as! String
                    secondVC.objectId = message.objectId!
-                   
-                  
                }
            }
        }
@@ -88,29 +87,40 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
            
        }
 
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
         print(messages)
-      
+    
+        
+        
+        
+          
         let message = messages[indexPath.row]
         let user = message["Account2"] as? PFUser
         let currentUser = PFUser.current()
      
+        //let lastElement = message.objectId?.last
     
+        //print(lastElement!)
+        
         if (user?.objectId == currentUser?.objectId){
             let otherUser = message["Account1"] as? PFUser
             cell.FirstName.text = otherUser?["FirstName"] as? String
             cell.LastName.text = otherUser?["LastName"] as? String
-            cell.textMessage.text = "Let see what you got"
-            cell.DateMessage.text = message.createdAt?.formatted()
+            cell.DateMessage.text = message.updatedAt?.formatted()
+            
+            //let MessageCount = messages.count-1
+            //let lastElement = messages[MessageCount]
+            
+
+           cell.textMessage.text = "We need to check this out to display the last message that the use sent"
+            
             
             let imageFile = otherUser?["image"] as? PFFileObject
             if ((imageFile == nil)){
-                
-                
-                
-            }
+                }
             else{
                 let urlString = imageFile?.url!
                 let url = URL(string: urlString!)!
@@ -129,11 +139,8 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let url = URL(string: urlString!)!
                 cell.MessageProfile.af.setImage(withURL: url)
             }
-            
-
         }
-    
-    
           return cell
       }
+
 }

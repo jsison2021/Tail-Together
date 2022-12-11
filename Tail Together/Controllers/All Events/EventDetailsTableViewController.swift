@@ -145,6 +145,21 @@ class EventDetailsTableViewController: UITableViewController {
         return cell
     }
     
+    @IBAction func GotoProfile(_ sender: Any) {
+        
+        //self.performSegue(withIdentifier: "goToProfile", sender: Any?.self)
+        
+       /* let main = UIStoryboard(name: "Main", bundle: nil)
+        let UserProfileViewController = main.instantiateViewController(identifier: "UserProfileViewController")
+            
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        
+        delegate.window?.rootViewController = UserProfileViewController
+        self.present(UserProfileViewController, animated:true, completion:nil)*/
+    }
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.

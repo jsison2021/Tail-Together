@@ -9,9 +9,9 @@ import UIKit
 import Parse
 
 
-class MessageLogTableViewController: UITableViewController {
+class MessageLogTableViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
-   
+    let bubbleBackgtoundView = UIView.self
     var firstName = ""
     var lastName = ""
     var objectId = ""
@@ -24,6 +24,8 @@ class MessageLogTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.separatorStyle = .none
         
         newMessageField.layer.borderWidth = 1
         newMessageField.layer.borderColor = UIColor.orange.cgColor
@@ -125,32 +127,46 @@ class MessageLogTableViewController: UITableViewController {
             cell.createdText.textAlignment = NSTextAlignment(.right)
             cell.createdText.text = created?.formatted()
             
+            
+            
+            /*let constraint = [cell.topAnchor.constraint(equalTo: cell.messageField.topAnchor, constant: 16),cell.trailingAnchor.constraint(equalTo: cell.messageField.trailingAnchor, constant: 30), cell.bottomAnchor.constraint(equalTo: cell.messageField.bottomAnchor, constant: -16), cell.widthAnchor.constraint(equalTo: cell.messageField.widthAnchor, constant: 150)]
+            NSLayoutConstraint.activate(constraint)*/
+            
+            
            
         }
         if (messageUser.objectId != PFUser.current()?.objectId){
             
-            //cell.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
             
             cell.messageField.textAlignment = NSTextAlignment(.left)
             cell.messageField.text = message["messageText"] as? String
             
            
             
-            
-            cell.layer.cornerRadius = 30
+            //cell.layer.cornerRadius = 30
             cell.backgroundColor = .lightGray
             cell.messageField.textColor = .black
             cell.messageField.font = .systemFont(ofSize: 18)
             cell.layer.borderColor = UIColor.white.cgColor
             cell.layer.borderWidth = 2
-            
-         
-           
-
+            cell.layer.cornerRadius = 30
+        
             
             
             cell.createdText.textAlignment = NSTextAlignment(.left)
             cell.createdText.text = created?.formatted()
+            
+            cell.messageField.translatesAutoresizingMaskIntoConstraints = false
+            
+            //bubbleBackgtoundView.backgroundColor = .yellow
+            cell.messageField.backgroundColor = .lightGray
+            //cell.messageField.addSubview(cell.messageField)
+            
+            
+            
+            
+            /*let constraint = [cell.topAnchor.constraint(equalTo: cell.messageField.topAnchor, constant: 16),cell.leadingAnchor.constraint(equalTo: cell.messageField.leadingAnchor, constant: 30), cell.bottomAnchor.constraint(equalTo: cell.messageField.bottomAnchor, constant: -16), cell.widthAnchor.constraint(equalTo: cell.messageField.widthAnchor, constant: 150)]
+            NSLayoutConstraint.activate(constraint)*/
             
         }
         
@@ -158,6 +174,22 @@ class MessageLogTableViewController: UITableViewController {
         return cell
     }
 
+    
+    @IBAction func viewProfileGesture(_ sender: Any) {
+        
+        
+  
+        
+   /* print("Huxley Gesture")
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let UserProfileViewController = main.instantiateViewController(identifier: "UserProfileViewController")
+            
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        
+        delegate.window?.rootViewController = UserProfileViewController
+        self.present(UserProfileViewController, animated:true, completion:nil)*/
+    }
+    
     
     /*
     // Override to support conditional editing of the table view.
