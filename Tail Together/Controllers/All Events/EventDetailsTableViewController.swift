@@ -20,6 +20,9 @@ class EventDetailsTableViewController: UITableViewController {
     var comments = [PFObject]()
     var temp = [PFObject]()
     
+   
+
+    
     @IBOutlet weak var eventPoster: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
@@ -122,13 +125,38 @@ class EventDetailsTableViewController: UITableViewController {
         }
     }
    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+           if segue.identifier == "goToProfile" {
+               let secondVC: UserProfileViewController = segue.destination as! UserProfileViewController
+               let cell = sender as! UITableViewCell
+               let indexPath = tableView.indexPath(for: cell)
+
+               let event = comments[indexPath!.row]
+        
+               let user = event["author"] as! PFUser
+               
+               secondVC.firstName = user["FirstName"] as! String
+               secondVC.lastName = user["LastName"] as! String
+               secondVC.email = user["email"] as? String ?? ""
+               secondVC.phone = user["PhoneNumber"] as? String ?? ""
+               secondVC.gender = user["Gender"] as? String ?? ""
+               secondVC.user = user["username"] as! String
+               
+               secondVC.objectId = user.objectId!
+              
+           }
+       }
+
+ 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return comments.count
     }
+  
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
 
@@ -145,18 +173,7 @@ class EventDetailsTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func GotoProfile(_ sender: Any) {
-        
-        //self.performSegue(withIdentifier: "goToProfile", sender: Any?.self)
-        
-       /* let main = UIStoryboard(name: "Main", bundle: nil)
-        let UserProfileViewController = main.instantiateViewController(identifier: "UserProfileViewController")
-            
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
-        
-        delegate.window?.rootViewController = UserProfileViewController
-        self.present(UserProfileViewController, animated:true, completion:nil)*/
-    }
+   
     
     
     

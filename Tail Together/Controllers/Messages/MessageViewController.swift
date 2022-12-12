@@ -34,7 +34,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         let query = PFQuery(className: "Conversations")
         query.includeKeys(["Account1","Account2","messages"])
         query.whereKey("authors", equalTo: PFUser.current()!)
-        
+        query.addDescendingOrder("updatedAt")
         
         query.findObjectsInBackground {(messages, error) in
             if messages != nil {
@@ -91,12 +91,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
         
-        print(messages)
-    
-        
-        
-        
-          
+  
         let message = messages[indexPath.row]
         let user = message["Account2"] as? PFUser
         let currentUser = PFUser.current()
