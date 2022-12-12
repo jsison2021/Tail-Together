@@ -67,6 +67,8 @@ class AllEventsController: UITableViewController {
                secondVC.desc = event["descText"] as! String
                secondVC.eventText = event["nameText"] as! String
                secondVC.eventId = event.objectId!
+               
+              
            }
        }
 
