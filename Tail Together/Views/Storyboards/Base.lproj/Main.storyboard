@@ -678,12 +678,11 @@
                     <navigationItem key="navigationItem" style="editor" id="I9P-zW-4md">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="t2l-Vh-59e">
-                            <rect key="frame" x="195" y="22" width="0.0" height="0.0"/>
+                            <rect key="frame" x="188.66666666666666" y="22" width="13" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-lr-ZDa">
-                                    <rect key="frame" x="-165" y="-27" width="343" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-lr-ZDa">
+                                    <rect key="frame" x="-99" y="-27" width="212" height="50"/>
                                     <color key="tintColor" red="0.91129696370000002" green="0.39035246270000001" blue="0.26429545879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <gestureRecognizers/>
                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -695,6 +694,12 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ZCf-lr-ZDa" secondAttribute="trailing" constant="-100" id="0me-Mt-RxY"/>
+                                <constraint firstItem="ZCf-lr-ZDa" firstAttribute="top" secondItem="t2l-Vh-59e" secondAttribute="top" constant="-27" id="EXn-hB-3uC"/>
+                                <constraint firstAttribute="bottom" secondItem="ZCf-lr-ZDa" secondAttribute="bottom" constant="-23" id="L2e-C8-cSc"/>
+                                <constraint firstItem="ZCf-lr-ZDa" firstAttribute="leading" secondItem="t2l-Vh-59e" secondAttribute="leading" constant="-99" id="waO-RO-6EZ"/>
+                            </constraints>
                         </view>
                     </navigationItem>
                     <connections>
@@ -1320,6 +1325,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="linkColor"/>
                                             <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="aRZ-UZ-uxP" appends="YES" id="Btq-1A-s6A"/>
+                                            </connections>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQd-GJ-rIw">
                                             <rect key="frame" x="8" y="22.333333333333332" width="26" height="16.999999999999996"/>
@@ -1357,7 +1365,7 @@
                                     <outlet property="commentTextLabel" destination="IKd-yg-BpJ" id="DIm-J5-A2y"/>
                                     <outlet property="nameLabel" destination="5eJ-qy-HmO" id="QbC-q6-O4L"/>
                                     <outlet property="timeLabel" destination="zQd-GJ-rIw" id="Llp-Vg-rbc"/>
-                                    <segue destination="GUz-R7-PHN" kind="show" identifier="goToProfile" id="Yi2-TO-nbU"/>
+                                    <segue destination="GUz-R7-PHN" kind="show" identifier="goUserToProfile" id="Yi2-TO-nbU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1393,7 +1401,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUh-ua-7We" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="0uJ-mD-JM9">
                     <connections>
-                        <action selector="userProfile:" destination="eUT-SM-Ox2" id="89c-bH-M29"/>
+                        <action selector="goToProfile:" destination="eUT-SM-Ox2" id="Vah-dI-uyj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="aRZ-UZ-uxP">
+                    <connections>
+                        <action selector="toProfile:" destination="eUT-SM-Ox2" id="8Gd-11-eoI"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1984,7 +1997,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="WBq-s0-eGR"/>
         <segue reference="J5z-um-7Eg"/>
-        <segue reference="u8V-Nt-s6q"/>
+        <segue reference="JVR-tK-A2p"/>
         <segue reference="qXU-rF-Crt"/>
         <segue reference="1tJ-HQ-f4S"/>
         <segue reference="kuM-af-Eap"/>

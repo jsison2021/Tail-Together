@@ -128,7 +128,7 @@ class EventDetailsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-           if segue.identifier == "goToProfile" {
+           if segue.identifier == "goUserToProfile" {
                let secondVC: UserProfileViewController = segue.destination as! UserProfileViewController
                let cell = sender as! UITableViewCell
                let indexPath = tableView.indexPath(for: cell)
@@ -137,12 +137,15 @@ class EventDetailsTableViewController: UITableViewController {
         
                let user = event["author"] as! PFUser
                
+             
+               
+               
                secondVC.firstName = user["FirstName"] as! String
                secondVC.lastName = user["LastName"] as! String
-               secondVC.email = user["email"] as? String ?? ""
+               secondVC.email = user["email"] as? String ?? " "
                secondVC.phone = user["PhoneNumber"] as? String ?? ""
-               secondVC.gender = user["Gender"] as? String ?? ""
-               secondVC.user = user["username"] as! String
+               secondVC.gender = user["Gender"] as? String ?? " "
+               secondVC.user = user["username"] as? String ?? " "
                
                secondVC.objectId = user.objectId!
               
@@ -174,7 +177,15 @@ class EventDetailsTableViewController: UITableViewController {
     }
     
    
+    @IBAction func toProfile(_ sender: Any) {
+        self.performSegue(withIdentifier: "goUserToProfile", sender: Any?.self)
+    }
     
+    @IBAction func goToProfile(_ sender: Any) {
+        
+        
+       // self.performSegue(withIdentifier: "goUserToProfile", sender: Any?.self)
+    }
     
     
 

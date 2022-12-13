@@ -16,7 +16,7 @@ class MessageLogTableViewController: UITableViewController, UIImagePickerControl
     var lastName = ""
     var objectId = ""
     
-   
+    
     var messages = [PFObject]()
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -37,8 +37,7 @@ class MessageLogTableViewController: UITableViewController, UIImagePickerControl
         
         self.nameLabel.text = firstName + " " + lastName
         
-        
-        // Uncomment the following line to preserve selection between presentations
+       // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -51,7 +50,6 @@ class MessageLogTableViewController: UITableViewController, UIImagePickerControl
         query.whereKey("conversations", equalTo: objectId)
         query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {(messages, error) in
-            
             if messages != nil {
                 self.messages = messages!
                 self.tableView.reloadData()
@@ -177,7 +175,7 @@ class MessageLogTableViewController: UITableViewController, UIImagePickerControl
     
     @IBAction func viewProfileGesture(_ sender: Any) {
         
-        
+        self.performSegue(withIdentifier: "profileToMessage", sender: Any?.self)
   
         
    /* print("Huxley Gesture")

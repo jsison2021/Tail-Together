@@ -26,7 +26,7 @@ class NewMessageViewController: UIViewController {
 
         //query.whereKey("Account1", equalTo: PFUser.current()!)
         query.whereKey("Account2", equalTo: PFUser.current()!)
-        
+       
        
         query.findObjectsInBackground { (object, error) -> Void in
               

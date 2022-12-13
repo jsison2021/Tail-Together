@@ -69,6 +69,8 @@ class AllEventsController: UITableViewController {
                secondVC.eventId = event.objectId!
                
               
+
+              
            }
        }
 
@@ -134,10 +136,10 @@ class AllEventsController: UITableViewController {
     
     
     @IBAction func eventGesture(_ sender: Any) {
-       /* let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let secondViewController = storyBoard.instantiateViewControllerWithIdentifier("secondView") as SecondViewController
-                self.presentViewController(secondViewController, animated:true, completion:nil)
-            */
+        /*let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        _ = storyBoard.instantiateViewController(withIdentifier: "UserProfileViewController") as! UserProfileViewController
+        //self.presentViewControllerUserProfileViewController, animated:true, completion:nil)*/
+            
     }
     
     /*

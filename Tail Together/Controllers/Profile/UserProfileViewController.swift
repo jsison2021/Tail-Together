@@ -20,10 +20,14 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var userLastName: UILabel!
     @IBOutlet weak var userFirstName: UILabel!
     
+    
+  
+    
+    
     var firstName = ""
     var lastName = ""
     var gender = ""
-    var email = ""
+    var email = " "
     var profile = ""
     var phone = ""
     var user = ""
