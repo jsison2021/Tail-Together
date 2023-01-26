@@ -783,7 +783,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="IcU-Pu-lHs">
-                                <rect key="frame" x="135" y="57" width="110" height="103"/>
+                                <rect key="frame" x="135" y="57" width="110" height="25"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="4zr-IJ-P3f"/>
@@ -858,15 +858,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgH-3Q-O4U">
-                                <rect key="frame" x="16" y="578" width="358" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="Zv9-fM-q8u"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gl1-A7-jbc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -879,11 +870,9 @@
                             <constraint firstItem="W6Q-9P-oQI" firstAttribute="trailing" secondItem="tAY-hP-9vx" secondAttribute="trailing" id="9HC-qS-7CO"/>
                             <constraint firstItem="Gl1-A7-jbc" firstAttribute="bottom" secondItem="IcU-Pu-lHs" secondAttribute="bottom" constant="550" id="9In-v3-Oer"/>
                             <constraint firstItem="W6Q-9P-oQI" firstAttribute="leading" secondItem="UqM-S7-CgS" secondAttribute="leading" id="9TZ-mM-4QA"/>
-                            <constraint firstItem="CgH-3Q-O4U" firstAttribute="leading" secondItem="6Sp-RV-zKf" secondAttribute="leading" id="Brs-4M-ezc"/>
                             <constraint firstItem="8ba-K3-NAw" firstAttribute="top" secondItem="pGl-hQ-GMO" secondAttribute="bottom" constant="8" id="C1u-Yc-EA7"/>
                             <constraint firstItem="Gl1-A7-jbc" firstAttribute="trailing" secondItem="pGl-hQ-GMO" secondAttribute="trailing" constant="257" id="CVi-4M-J48"/>
                             <constraint firstItem="W6Q-9P-oQI" firstAttribute="top" secondItem="UqM-S7-CgS" secondAttribute="bottom" constant="8" id="EZB-u9-g0u"/>
-                            <constraint firstItem="Gl1-A7-jbc" firstAttribute="bottom" secondItem="CgH-3Q-O4U" secondAttribute="bottom" constant="89" id="GpN-xz-agh"/>
                             <constraint firstItem="dMF-ac-N5W" firstAttribute="top" secondItem="W6Q-9P-oQI" secondAttribute="bottom" constant="8" id="GzS-NF-1WJ"/>
                             <constraint firstItem="tAY-hP-9vx" firstAttribute="trailing" secondItem="8ba-K3-NAw" secondAttribute="trailing" id="IMm-ZA-zpK"/>
                             <constraint firstItem="pGl-hQ-GMO" firstAttribute="trailing" secondItem="IJs-bA-7oA" secondAttribute="trailing" constant="22" id="IzJ-pS-va8"/>
@@ -895,8 +884,6 @@
                             <constraint firstItem="6Sp-RV-zKf" firstAttribute="leading" secondItem="dMF-ac-N5W" secondAttribute="leading" id="WCa-rH-djU"/>
                             <constraint firstItem="IJs-bA-7oA" firstAttribute="top" secondItem="8ba-K3-NAw" secondAttribute="bottom" constant="8" id="aKD-vV-GIM"/>
                             <constraint firstItem="8ba-K3-NAw" firstAttribute="centerX" secondItem="IcU-Pu-lHs" secondAttribute="centerX" constant="5" id="cfc-U4-T20"/>
-                            <constraint firstItem="CgH-3Q-O4U" firstAttribute="trailing" secondItem="6Sp-RV-zKf" secondAttribute="trailing" id="dfu-XL-yHE"/>
-                            <constraint firstItem="CgH-3Q-O4U" firstAttribute="top" secondItem="6Sp-RV-zKf" secondAttribute="bottom" constant="8" id="jhV-7L-4Vh"/>
                             <constraint firstItem="pGl-hQ-GMO" firstAttribute="trailing" secondItem="dMF-ac-N5W" secondAttribute="trailing" constant="-26" id="lJG-Co-Bec"/>
                             <constraint firstItem="IcU-Pu-lHs" firstAttribute="top" secondItem="Gl1-A7-jbc" secondAttribute="top" constant="10" id="nfE-Fb-VSW"/>
                             <constraint firstItem="Gl1-A7-jbc" firstAttribute="trailing" secondItem="IcU-Pu-lHs" secondAttribute="trailing" constant="145" id="nzC-U9-tMq"/>
@@ -914,7 +901,6 @@
                     <connections>
                         <outlet property="PictureChange" destination="IcU-Pu-lHs" id="XDP-A6-kB3"/>
                         <outlet property="UpdateButton" destination="tJt-WU-C4q" id="46j-Qy-LPt"/>
-                        <outlet property="errorLabel" destination="CgH-3Q-O4U" id="Tfs-ye-vkQ"/>
                         <outlet property="genderField" destination="tAY-hP-9vx" id="feR-MQ-vML"/>
                         <outlet property="newEmailField" destination="W6Q-9P-oQI" id="UAo-5x-a2o"/>
                         <outlet property="newUsernameField" destination="8ba-K3-NAw" id="7Dw-cL-hc3"/>

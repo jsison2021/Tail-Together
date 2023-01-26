@@ -18,7 +18,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var genderField: UITextField!
     @IBOutlet weak var newEmailField: UITextField!
     @IBOutlet weak var phoneNumberField: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
+   
     
     
     let currentUser = PFUser.current()
@@ -65,7 +65,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         picker.allowsEditing = true
         
         if UIImagePickerController.isSourceTypeAvailable(.camera){
-            picker.sourceType = .camera
+            //picker.sourceType = .camera
+            picker.sourceType = .photoLibrary
         }
         else{
             picker.sourceType = .photoLibrary
