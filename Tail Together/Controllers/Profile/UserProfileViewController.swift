@@ -59,41 +59,30 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func messageButton(_ sender: Any) {
-        let query = PFQuery(className: "Conversations")
-
-        //query.whereKey("Account1", equalTo: PFUser.current()!)
-        query.whereKey("Account2", equalTo: PFUser.current()!)
-        
-       
-        query.findObjectsInBackground { (object, error) -> Void in
+    
+      let convo = PFObject(className: "Conversations")
+      let messages  = PFObject(className: "Messages")
+      let relation = convo.relation(forKey: "authors")
+      relation.add(self.filteredUsers.first!)
+      relation.add(PFUser.current()!)
+      convo["Account1"] = PFUser.current()!
+      convo["Account2"] = self.filteredUsers.first!
+      
+      convo.add(messages, forKey: "messages")
+      
+      
+      convo.saveInBackground{ (success,error) in
+          if success{
               
-              if object == [] {
-                  let convo = PFObject(className: "Conversations")
-                  let messages  = PFObject(className: "Messages")
-                  let relation = convo.relation(forKey: "authors")
-                  relation.add(self.filteredUsers.first!)
-                  relation.add(PFUser.current()!)
-                  convo["Account1"] = PFUser.current()!
-                  convo["Account2"] = self.filteredUsers.first!
-                  
-                  convo.add(messages, forKey: "messages")
-                  
-                  
-                  convo.saveInBackground{ (success,error) in
-                      if success{
-                          
-                          print("saved")
-                      }
-                      else{
-                          print("error!")
-                      }
-                  
-                  }
-              } else {
-                  print("it exists")
-              }
-
+              print("saved")
           }
+          else{
+              print("error!")
+          }
+      
+      }
+
+          
         
         self.performSegue(withIdentifier: "profileToMessage", sender: Any?.self)
     }

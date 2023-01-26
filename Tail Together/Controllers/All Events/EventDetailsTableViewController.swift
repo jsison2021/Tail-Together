@@ -177,10 +177,8 @@ class EventDetailsTableViewController: UITableViewController {
     }
     
    
-    @IBAction func toProfile(_ sender: Any) {
-        self.performSegue(withIdentifier: "goUserToProfile", sender: Any?.self)
-    }
     
+
     @IBAction func goToProfile(_ sender: Any) {
         
         
